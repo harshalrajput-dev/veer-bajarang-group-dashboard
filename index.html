@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>वीर बजरंग ग्रुप - 20th Anniversary Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Tiro+Devanagari+Marathi:ital@0;1&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ANNIVERSARY TOP BANNER -->
+  <div class="anniversary-banner">
+    <span class="banner-line-1">🎉 २० वे वर्ष भव्य सोहळा | भगीरथ उत्सव २०२६ 🎉</span>
+    <span class="banner-line-2">🚩 श्री गणरायाचे भव्य आगमन व २० व्या वर्षाचा दिमाखदार उत्सव 🚩</span>
+  </div>
+
+  <!-- HEADER / HERO -->
+  <header class="header">
+    <div class="header-inner header-hero">
+
+      <!-- LEFT: PRESIDENT (प्रमुख / अध्यक्ष) -->
+      <div class="leader-card president-card">
+        <div class="leader-photo">
+          <img src="yogesh-shirsath.png" alt="योगेश शिरसाठ" />
+        </div>
+        <h3 class="member-name">योगेश शिरसाठ</h3>
+        <span class="designation-badge">अध्यक्ष / प्रमुख</span>
+      </div>
+
+      <!-- CENTER: GROUP LOGO + TITLE -->
+      <div class="header-center">
+        <div class="emblem-logo" title="Veer Bajarang Group Logo">
+          <img src="bajarang.png" alt="वीर बजरंग ग्रुप Logo" />
+        </div>
+        <h1 class="main-title">वीर बजरंग ग्रुप</h1>
+        <p class="hero-subtitle">॥ श्री गणपती बाप्पा मोरया ॥</p>
+        <div class="year-badge">२० वे वर्ष</div>
+        <a class="invite-btn" href="https://hr-veer-bajarang.vercel.app/" target="_blank" rel="noopener noreferrer">
+          📜 डिजिटल निमंत्रण पत्रिका
+        </a>
+      </div>
+
+      <!-- RIGHT: VICE PRESIDENT (उपप्रमुख / उपाध्यक्ष) -->
+      <div class="leader-card vice-card">
+        <div class="leader-photo">
+          <img src="bhikan-goswami.png" alt="भिकण गोस्वामी" />
+        </div>
+        <h3 class="member-name">भिकण गोस्वामी</h3>
+        <span class="designation-badge">उपाध्यक्ष / उपप्रमुख</span>
+      </div>
+
+    </div>
+
+    <!-- Deposit Note -->
+    <div class="deposit-note">
+      <span class="note-icon">💰</span>
+      <span>सर्व सदस्यांनी ₹५,१०० जमा करणे अनिवार्य आहे</span>
+    </div>
+  </header>
+
+  <!-- TAB NAVIGATION -->
+  <nav class="tab-nav" aria-label="Dashboard tabs">
+    <button class="tab-btn active" data-tab="main">🚩 २०२६ भगीरथ उत्सव</button>
+    <button class="tab-btn" data-tab="history">📜 २०२५ बाकी हिशोब</button>
+  </nav>
+
+  <!-- TAB 1 : MAIN DASHBOARD -->
+  <main id="tab-main" class="tab-content">
+
+  <!-- DASHBOARD SUMMARY -->
+  <section class="summary-section">
+    <div class="summary-card members-card">
+      <div class="card-icon">👥</div>
+      <div class="card-info">
+        <span class="card-label">एकूण सदस्य</span>
+        <span class="card-value" id="totalMembers">0</span>
+      </div>
+    </div>
+    <div class="summary-card collected-card">
+      <div class="card-icon">✅</div>
+      <div class="card-info">
+        <span class="card-label">एकूण जमा रक्कम</span>
+        <span class="card-value" id="totalCollected">₹0</span>
+      </div>
+    </div>
+    <div class="summary-card pending-card">
+      <div class="card-icon">⏳</div>
+      <div class="card-info">
+        <span class="card-label">एकूण बाकी रक्कम</span>
+        <span class="card-value" id="totalPending">₹0</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS + SEARCH -->
+  <section class="controls-section">
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All Members</button>
+      <button class="filter-btn" data-filter="paid">✅ Paid</button>
+      <button class="filter-btn" data-filter="partial">🔄 Partial</button>
+      <button class="filter-btn" data-filter="pending">⏳ Pending</button>
+      <button class="filter-btn" data-filter="service">🚛 Service</button>
+    </div>
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="#ffb703" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="नाव किंवा ID शोधा... (e.g. VBG-005 / गणेश)" autocomplete="off" />
+    </div>
+  </section>
+
+  <!-- MEMBERS TABLE -->
+  <section class="table-section">
+    <div class="table-wrapper">
+      <table id="membersTable">
+        <thead>
+          <tr>
+            <th>Unique ID</th>
+            <th>सदस्याचे नाव</th>
+            <th>जमा रक्कम (₹)</th>
+            <th>बाकी रक्कम (₹)</th>
+            <th>स्थिती</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+      <div id="noResults" class="no-results" style="display:none;">🔍 सदस्य सापडला नाही</div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- TAB 2 : 2025 HISTORY & PENDING BALANCE -->
+  <section id="tab-history" class="tab-content history-section" style="display:none;">
+    <div class="history-card">
+
+      <div class="history-header">
+        <h2 class="history-title">🚩 वीर बजरंग ग्रुप - बाकी रक्कम २०२५</h2>
+        <span class="history-goal-badge">Pending Rupees ₹26,000</span>
+        <p class="history-sub">मागील वर्षाचा (२०२५) अचूक जमा व बाकी हिशोब</p>
+      </div>
+
+      <!-- 2025 Summary Stats -->
+      <div class="history-summary">
+        <div class="h-stat goal-stat">
+          <span class="h-stat-icon">🎯</span>
+          <div class="h-stat-info">
+            <span class="h-stat-label">एकूण उद्दिष्ट २०२५</span>
+            <span class="h-stat-value" id="hGoal">₹56,000</span>
+          </div>
+        </div>
+        <div class="h-stat collected-stat">
+          <span class="h-stat-icon">✅</span>
+          <div class="h-stat-info">
+            <span class="h-stat-label">एकूण जमा २०२५</span>
+            <span class="h-stat-value" id="hCollected">₹30,000</span>
+          </div>
+        </div>
+        <div class="h-stat remaining-stat">
+          <span class="h-stat-icon">⏳</span>
+          <div class="h-stat-info">
+            <span class="h-stat-label">एकूण बाकी २०२५</span>
+            <span class="h-stat-value" id="hRemaining">₹26,000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2025 Members Table -->
+      <div class="table-wrapper">
+        <table class="history-table" id="historyTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>सदस्याचे नाव</th>
+              <th>जमा रक्कम (₹)</th>
+              <th>बाकी रक्कम (₹)</th>
+              <th>स्थिती</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DEVELOPER & CREATOR CREDITS -->
+  <section class="developer-section">
+    <div class="developer-card">
+      <p class="dev-badge">👨‍💻 Web Developer &amp; Creator</p>
+      <h3 class="dev-name">Harshal Rajput</h3>
+      <p class="dev-subtitle">Web Development in progress | Professional Digital Invitation</p>
+      <p class="dev-note"><span class="om">॥ श्री गणेशाय नमः ॥</span> - वीर बजरंग ग्रुप • गणेश आगमन सोहळा २०२६</p>
+      <a class="portfolio-btn" href="https://harshal-portfolio-nine.vercel.app/" target="_blank" rel="noopener noreferrer">🌐 Visit Developer Portfolio</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-slogan">🚩 गणपती बाप्पा मोरया | वीर बजरंग ग्रुप 🚩</p>
+      <p class="footer-copy">&copy; 2026 Veer Bajarang Group. All Rights Reserved. 20th Anniversary Edition.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

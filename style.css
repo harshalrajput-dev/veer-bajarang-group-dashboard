@@ -1,0 +1,1219 @@
+/* ============================================
+   VEER BAJARANG GROUP - PREMIUM DASHBOARD
+   Dark & Golden Luxury Theme
+   ============================================ */
+
+:root {
+  --bg-primary: #0f0c20;
+  --bg-secondary: #161235;
+  --bg-card: #1a153a;
+  --bg-card-hover: #241d54;
+  --gold: #ffb703;
+  --dgold: #ffd700;
+  --gold-dim: #cc9200;
+  --gold-glow: rgba(255, 183, 3, 0.25);
+  --cyan: #00e5ff;
+  --cyan-dim: #009eb8;
+  --green: #2ecc71;
+  --green-dim: #1fa855;
+  --red: #e74c3c;
+  --red-dim: #c0392b;
+  --orange: #f39c12;
+  --text-primary: #f0e6ff;
+  --text-secondary: #b8a9d4;
+  --text-muted: #7c6fa0;
+  --border: rgba(255, 183, 3, 0.12);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-gold: 0 0 30px rgba(255, 183, 3, 0.15);
+  --font-heading: 'Yatra One', 'Rozha One', 'Poppins', serif;
+  --font-body: 'Poppins', 'Inter', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 20%, rgba(255, 183, 3, 0.04) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(46, 204, 113, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   GLOBAL DEVANAGARI TYPOGRAPHY FIX
+   ============================================ */
+.main-title,
+.hero-subtitle,
+.year-badge,
+.member-name,
+.designation-badge,
+.leader-card,
+.anniversary-banner,
+.banner-line-1,
+.banner-line-2,
+.deposit-note,
+.card-label,
+.footer-slogan,
+.footer-copy,
+#membersTable thead th,
+#membersTable tbody td:nth-child(2) {
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   ANNIVERSARY TOP BANNER
+   ============================================ */
+.anniversary-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 15px;
+  background: #ffb703;
+  text-align: center;
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  color: #0f0c20;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.banner-line-1 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f0c20;
+  line-height: 1.4;
+  text-rendering: optimizeLegibility;
+}
+
+.banner-line-2 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a153a;
+  line-height: 1.4;
+  text-rendering: optimizeLegibility;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ============================================
+   HEADER / HERO
+   ============================================ */
+.header {
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 36px 20px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.header-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 28px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.header-hero {
+  gap: 24px;
+}
+
+/* Leader (President / Vice President) Cards */
+.leader-card {
+  background: rgba(26, 21, 58, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 183, 3, 0.25);
+  border-radius: 18px;
+  padding: 20px 18px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-width: 180px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.leader-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 183, 3, 0.55);
+  box-shadow: 0 12px 30px rgba(255, 183, 3, 0.18);
+}
+
+.leader-photo img {
+  display: block;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffb703;
+  box-shadow: 0 0 15px rgba(255, 183, 3, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.leader-card:hover .leader-photo img {
+  transform: scale(1.04);
+}
+
+.member-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.designation-badge {
+  background: #ffb703;
+  color: #0f0c20;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* Center column */
+.header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 280px;
+}
+
+/* 3D Emblem Logo */
+.emblem-logo {
+  display: block;
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 8px;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 20px rgba(255, 183, 3, 0.7));
+  animation: emblemFloat 4s ease-in-out infinite;
+  transition: filter 0.4s ease;
+}
+
+.emblem-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.35s ease;
+}
+
+.emblem-logo:hover {
+  filter: drop-shadow(0 0 30px rgba(255, 183, 3, 0.85));
+}
+
+.emblem-logo:hover img {
+  transform: scale(1.05);
+}
+
+@keyframes emblemFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.main-title {
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold) 0%, #ffe066 45%, var(--dgold) 70%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hero-subtitle {
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  font-size: clamp(0.95rem, 2vw, 1.35rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.year-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--dgold) 0%, var(--gold) 50%, var(--gold-dim) 100%);
+  color: #0f0c20;
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 6px 20px;
+  border-radius: 30px;
+  box-shadow: var(--shadow-gold);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(255, 183, 3, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(255, 183, 3, 0.6); }
+}
+
+/* Digital Invitation Button */
+.invite-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  background: linear-gradient(135deg, var(--dgold) 0%, var(--gold) 50%, var(--gold-dim) 100%);
+  color: #0f0c20;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  padding: 12px 26px;
+  border-radius: 40px;
+  text-decoration: none;
+  animation: goldPulse 2.2s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.invite-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  background: linear-gradient(135deg, #ffe066 0%, var(--dgold) 50%, var(--gold) 100%);
+}
+
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 18px rgba(255, 183, 3, 0.45), 0 0 35px rgba(255, 183, 3, 0.2); }
+  50% { box-shadow: 0 0 28px rgba(255, 215, 0, 0.7), 0 0 55px rgba(255, 183, 3, 0.35); }
+}
+
+.deposit-note {
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(46, 204, 113, 0.12);
+  border: 1px solid rgba(46, 204, 113, 0.35);
+  color: var(--green);
+  padding: 10px 28px;
+  border-radius: 40px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.note-icon {
+  font-size: 1.2rem;
+}
+
+/* ============================================
+   TAB NAVIGATION
+   ============================================ */
+.tab-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 20px 6px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.tab-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+  font-weight: 700;
+  padding: 12px 22px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tab-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: rgba(255, 183, 3, 0.4);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dim) 100%);
+  color: var(--bg-primary);
+  border-color: var(--gold);
+  box-shadow: 0 0 18px rgba(255, 183, 3, 0.35);
+}
+
+/* ============================================
+   TAB CONTENT (2025 History)
+   ============================================ */
+.tab-content {
+  position: relative;
+  z-index: 1;
+}
+
+.history-section {
+  max-width: 1100px;
+  margin: 30px auto 40px;
+  padding: 0 20px;
+}
+
+.history-card {
+  background: linear-gradient(160deg, rgba(26, 21, 58, 0.7), rgba(15, 12, 32, 0.92));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 183, 3, 0.3);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  box-shadow: var(--shadow), inset 0 0 30px rgba(255, 183, 3, 0.04);
+}
+
+.history-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.history-title {
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  font-size: clamp(1.15rem, 3vw, 1.7rem);
+  font-weight: 700;
+  color: var(--dgold);
+  margin-bottom: 6px;
+  line-height: 1.35;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.history-goal-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--dgold) 0%, var(--gold) 50%, var(--gold-dim) 100%);
+  color: #0f0c20;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 6px 18px;
+  border-radius: 30px;
+  margin-bottom: 8px;
+  box-shadow: 0 0 14px rgba(255, 183, 3, 0.4);
+  text-rendering: optimizeLegibility;
+}
+
+.history-sub {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.history-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.h-stat {
+  background: rgba(255, 183, 3, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.3s ease;
+}
+
+.h-stat:hover {
+  transform: translateY(-3px);
+}
+
+.h-stat-icon {
+  font-size: 1.6rem;
+}
+
+.h-stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.h-stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.h-stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+}
+
+.goal-stat .h-stat-value { color: var(--gold); }
+.collected-stat .h-stat-value { color: var(--green); }
+.remaining-stat .h-stat-value { color: var(--red); }
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+
+.history-table thead {
+  background: linear-gradient(135deg, rgba(255, 183, 3, 0.1), rgba(255, 183, 3, 0.05));
+}
+
+.history-table thead th {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.history-table tbody tr {
+  border-bottom: 1px solid rgba(255, 183, 3, 0.05);
+  transition: background 0.2s ease;
+}
+
+.history-table tbody tr:hover {
+  background: rgba(255, 183, 3, 0.04);
+}
+
+.history-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.history-table tbody td {
+  padding: 13px 18px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.history-table tbody td:first-child {
+  color: var(--text-muted);
+  font-weight: 500;
+  width: 50px;
+}
+
+.history-table tbody td:nth-child(2) {
+  font-weight: 600;
+  min-width: 180px;
+}
+
+.history-table tbody td:nth-child(3) {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.history-table tbody td:last-child {
+  text-align: center;
+}
+
+/* ============================================
+   SUMMARY CARDS
+   ============================================ */
+.summary-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.summary-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.summary-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.members-card::before { background: var(--gold); }
+.collected-card::before { background: var(--green); }
+.pending-card::before { background: var(--red); }
+
+.summary-card:hover {
+  transform: translateY(-4px);
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow);
+}
+
+.card-icon {
+  font-size: 2.2rem;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.members-card .card-icon { background: rgba(255, 183, 3, 0.12); }
+.collected-card .card-icon { background: rgba(46, 204, 113, 0.12); }
+.pending-card .card-icon { background: rgba(231, 76, 60, 0.12); }
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.card-value {
+  font-size: 1.7rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+}
+
+.members-card .card-value { color: var(--gold); }
+.collected-card .card-value { color: var(--green); }
+.pending-card .card-value { color: var(--red); }
+
+/* ============================================
+   CONTROLS (Filters + Search)
+   ============================================ */
+.controls-section {
+  max-width: 1100px;
+  margin: 0 auto 20px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dim) 100%);
+  color: var(--bg-primary);
+  border-color: var(--gold);
+  font-weight: 600;
+}
+
+.search-box {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.search-box input {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 10px 16px 10px 40px;
+  border-radius: 30px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  width: 280px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-box input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-box input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(255, 183, 3, 0.15);
+}
+
+/* ============================================
+   DATA TABLE
+   ============================================ */
+.table-section {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.table-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--gold-dim);
+  border-radius: 3px;
+}
+
+#membersTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+#membersTable thead {
+  background: linear-gradient(135deg, rgba(255, 183, 3, 0.1) 0%, rgba(255, 183, 3, 0.05) 100%);
+}
+
+#membersTable thead th {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+#membersTable tbody tr {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(255, 183, 3, 0.05);
+}
+
+#membersTable tbody tr:hover {
+  background: rgba(255, 183, 3, 0.04);
+}
+
+#membersTable tbody tr:last-child {
+  border-bottom: none;
+}
+
+#membersTable tbody td {
+  padding: 14px 20px;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+#membersTable tbody td:first-child {
+  color: var(--gold);
+  font-weight: 500;
+  width: 110px;
+}
+
+.member-id {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--gold);
+  background: rgba(255, 183, 3, 0.08);
+  border: 1px solid rgba(255, 183, 3, 0.25);
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.service-amount {
+  color: var(--text-secondary);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+#membersTable tbody td:nth-child(2) {
+  font-weight: 500;
+  min-width: 200px;
+}
+
+#membersTable tbody td:nth-child(3) {
+  color: var(--green);
+  font-weight: 600;
+}
+
+#membersTable tbody td:nth-child(4) {
+  font-weight: 600;
+}
+
+#membersTable tbody td:last-child {
+  text-align: center;
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.status-paid {
+  background: rgba(46, 204, 113, 0.15);
+  color: var(--green);
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.status-partial {
+  background: rgba(243, 156, 18, 0.15);
+  color: var(--orange);
+  border: 1px solid rgba(243, 156, 18, 0.3);
+}
+
+.status-pending {
+  background: rgba(231, 76, 60, 0.15);
+  color: var(--red);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.status-service {
+  background: rgba(52, 152, 219, 0.15);
+  color: #5dade2;
+  border: 1px solid rgba(52, 152, 219, 0.35);
+}
+
+.pending-amount-red {
+  color: var(--red);
+}
+
+.pending-amount-zero {
+  color: var(--green);
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   DEVELOPER & CREATOR CREDITS
+   ============================================ */
+.developer-section {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.developer-card {
+  background: linear-gradient(160deg, rgba(26, 21, 58, 0.72), rgba(15, 12, 32, 0.9));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: var(--radius);
+  padding: 30px 24px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.12), inset 0 0 24px rgba(0, 229, 255, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.developer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+}
+
+.dev-badge {
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  color: var(--cyan);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.dev-name {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--dgold);
+  margin-bottom: 2px;
+}
+
+.dev-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.dev-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.dev-note .om {
+  color: var(--cyan);
+}
+
+.portfolio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #00e5ff 0%, #00b8d4 100%);
+  color: #041b1f;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 24px;
+  border-radius: 40px;
+  text-decoration: none;
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.45);
+  transition: all 0.3s ease;
+}
+
+.portfolio-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(0, 229, 255, 0.65);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 30px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-slogan {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   ROW ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#membersTable tbody tr {
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .header {
+    padding: 22px 14px 16px;
+  }
+
+  .emblem-logo {
+    width: 110px;
+    height: 110px;
+  }
+
+  .header-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .header-center {
+    grid-column: 1 / -1;
+    order: 2;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .tab-nav {
+    padding: 14px 14px 6px;
+  }
+
+  .tab-btn {
+    width: 100%;
+    max-width: 500px;
+    padding: 14px 16px;
+    font-size: 0.95rem;
+  }
+
+  .history-card {
+    padding: 20px 14px;
+  }
+
+  .history-summary {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .leader-card {
+    min-width: 0;
+    width: 100%;
+    padding: 14px 12px;
+    gap: 8px;
+  }
+
+  .leader-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .summary-section {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .controls-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-buttons {
+    justify-content: center;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .search-box input {
+    width: 100%;
+  }
+
+  .anniversary-banner {
+    padding: 10px 12px;
+    gap: 3px;
+  }
+
+  .main-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .year-badge {
+    font-size: 0.9rem;
+    padding: 4px 14px;
+  }
+
+  #membersTable tbody td {
+    padding: 12px 14px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .emblem-logo {
+    width: 110px;
+    height: 110px;
+  }
+
+  .invite-btn {
+    font-size: 0.85rem;
+    padding: 12px 18px;
+  }
+
+  .dev-name {
+    font-size: 1.25rem;
+  }
+
+  .portfolio-btn {
+    font-size: 0.78rem;
+    padding: 11px 16px;
+  }
+
+  .header-inner {
+    gap: 10px;
+  }
+
+  .leader-photo img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .member-name {
+    font-size: 0.95rem;
+  }
+
+  .designation-badge {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+  }
+
+  .filter-btn {
+    padding: 10px 14px;
+    font-size: 0.8rem;
+  }
+
+  .search-box input {
+    padding: 12px 16px 12px 40px;
+    font-size: 0.9rem;
+  }
+
+  .card-value {
+    font-size: 1.4rem;
+  }
+
+  .summary-card {
+    padding: 20px 16px;
+  }
+
+  .history-title {
+    font-size: 1.05rem;
+  }
+
+  .history-goal-badge {
+    font-size: 0.78rem;
+    padding: 5px 14px;
+  }
+
+  .h-stat-value {
+    font-size: 1.1rem;
+  }
+
+  .h-stat {
+    padding: 14px 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .summary-section {
+    gap: 24px;
+  }
+
+  .summary-card {
+    padding: 32px 28px;
+  }
+}
