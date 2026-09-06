@@ -350,6 +350,146 @@ body::before {
 }
 
 /* ============================================
+   GUESTS & SPONSORS
+   ============================================ */
+.guests-section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.guests-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.guests-title {
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  font-size: clamp(1.25rem, 3.2vw, 1.9rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold) 0%, #ffe066 45%, var(--dgold) 70%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.35;
+  margin-bottom: 8px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.guests-subtitle {
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  color: var(--text-secondary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.guests-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.guest-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 300px;
+  max-width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 24px rgba(255, 215, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.guest-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 215, 0, 0.55);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 183, 3, 0.18);
+}
+
+.guest-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid #ffb703;
+  box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.guest-card:hover .guest-photo {
+  transform: scale(1.04);
+  box-shadow: 0 0 25px rgba(255, 183, 3, 0.6);
+}
+
+.guest-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.guest-name {
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.4;
+  margin-top: 4px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.guest-role {
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.guest-badge {
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 24px;
+  margin-top: 4px;
+  white-space: nowrap;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.badge-gold {
+  background: linear-gradient(135deg, var(--dgold) 0%, var(--gold) 50%, var(--gold-dim) 100%);
+  color: #0f0c20;
+  border: 1px solid rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 16px rgba(255, 183, 3, 0.45);
+}
+
+.badge-orange {
+  background: linear-gradient(135deg, #ff9f1c 0%, #f39c12 50%, #e67e22 100%);
+  color: #2b1202;
+  border: 1px solid rgba(255, 159, 28, 0.6);
+  box-shadow: 0 0 16px rgba(243, 156, 18, 0.45);
+}
+
+/* ============================================
    TAB NAVIGATION
    ============================================ */
 .tab-nav {
@@ -1126,6 +1266,20 @@ body::before {
   .year-badge {
     font-size: 0.9rem;
     padding: 4px 14px;
+  }
+
+  .guests-section {
+    margin: 28px auto;
+  }
+
+  .guests-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .guest-card {
+    width: 100%;
+    max-width: 340px;
   }
 
   #membersTable tbody td {
