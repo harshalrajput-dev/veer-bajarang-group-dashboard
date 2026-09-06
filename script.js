@@ -34,7 +34,7 @@ const members = [
   // Fully Pending
   { id: "VBG-022", name: "सागर सोनवणे", paid: 0 },
   { id: "VBG-023", name: "महेश दादू पाटिल", paid: 0 },
-  { id: "VBG-024", name: "सागर मॉरीस", paid: 0 },
+  { id: "VBG-024", name: "सागर मॉरीस", paid: 5100 },
   { id: "VBG-025", name: "किसन राजपूत", paid: 0 },
   { id: "VBG-026", name: "गौरव राजपूत", paid: 0 },
   { id: "VBG-027", name: "गुलाब पाटिल मास्टर", paid: 0 },
@@ -49,7 +49,7 @@ const members = [
   { id: "VBG-036", name: "योगेश पाटिल नाना", paid: 0 },
   { id: "VBG-037", name: "कमलेश पाटिल", paid: 0 },
   { id: "VBG-038", name: "गोपाल भाटु पाटिल", paid: 0 },
-  { id: "VBG-039", name: "गणेश बिरडे", paid: 5100 },
+  { id: "VBG-039", name: "गणेश बिरडे", paid: 0 },
 ];
 
 // Enrich data
@@ -201,7 +201,7 @@ const history2025 = [
   { id: 1, name: "ओम मराठे", paid: 14000, status: "paid" },
   { id: 2, name: "कमलेश पाटिल", paid: 14000, status: "paid" },
   { id: 3, name: "राणा राजपूत", paid: 2000, status: "partial" },
-  { id: 4, name: "सुनील कोळी", paid: 0, status: "pending" },
+  { id: 4, name: "सुनील कोळी", paid: 10000, status: "partial" },
 ];
 
 const H_TARGET = 14000;
@@ -212,8 +212,8 @@ const historyEnriched = history2025.map((m) => ({
 }));
 
 // Displayed summary values (as per official 2025 records)
-const hCollected = 30000;
-const hRemaining = 26000;
+const hCollected = 40000;
+const hRemaining = 16000;
 
 document.getElementById("hCollected").textContent = "₹" + hCollected.toLocaleString("en-IN");
 document.getElementById("hRemaining").textContent = "₹" + hRemaining.toLocaleString("en-IN");
