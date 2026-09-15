@@ -9,6 +9,7 @@ const TARGET_HALF = 2100;
 const GUEST_CONTRIBUTIONS = 56100; // ₹5,100 (Jigneshbhai) + ₹51,000 (Samrat)
 const RECEIPT_COLLECTION = 16661; // रामेश्वर नगर पावती संग्रह एकूण
 const TOTAL_EXTRA = GUEST_CONTRIBUTIONS + RECEIPT_COLLECTION;
+const TOTAL_COLLECTION = 213762 + 40000;
 
 const members = [
   // ─── 100% MEMBERS (target ₹5,100) ───
@@ -112,8 +113,9 @@ function renderReceipts() {
   body.innerHTML = "";
 
   document.getElementById("totalMembers").textContent = receipts.length;
-  document.getElementById("totalCollected").textContent = fmt(RECEIPT_COLLECTION);
+  document.getElementById("totalCollected").textContent = fmt(TOTAL_COLLECTION);
   document.getElementById("totalPending").textContent = fmt(0);
+  document.getElementById("netBalance").textContent = fmt(getExpenseNetBalance());
 
   receipts.forEach((r, i) => {
     const row = document.createElement("tr");
@@ -194,15 +196,66 @@ const TOTAL_EXPENSES_AGREED = expenses.reduce((s, e) => s + e.total, 0);
 const TOTAL_EXPENSES_PAID = expenses.reduce((s, e) => s + e.paid, 0);
 const TOTAL_EXPENSES_PENDING = TOTAL_EXPENSES_AGREED - TOTAL_EXPENSES_PAID; // मंडप ₹40k + डायमंड डेकोरेट ₹8k + कॅमेरा ₹1k
 
+function getExpenseNetBalance() {
+  return TOTAL_COLLECTION - TOTAL_EXPENSES_PAID;
+}
+
+function isBudgetDeficit() {
+  return getExpenseNetBalance() < TOTAL_EXPENSES_PENDING;
+}
+
+function updateBudgetDeficitAlert() {
+  const banner = document.getElementById("deficitBanner");
+  const bannerText = document.getElementById("deficitBannerText");
+  const netCard = document.querySelector(".net-card");
+  const deficit = isBudgetDeficit();
+
+  if (!deficit) {
+    banner.style.display = "none";
+    netCard.classList.remove("deficit-alert");
+    return;
+  }
+
+  const netBal = getExpenseNetBalance();
+  const shortfall = TOTAL_EXPENSES_PENDING - netBal;
+  bannerText.textContent =
+    `ઘટ ચેતવણી: કુલ બાકી ખર્ચ (${fmt(TOTAL_EXPENSES_PENDING)}) સામે હાથ પરની સિલક (${fmt(netBal)}) ઓછી છે. ${fmt(shortfall)} ની રકમ ખૂટે છે!`;
+  banner.style.display = "flex";
+  netCard.classList.add("deficit-alert");
+}
+
+function playWarningBeep() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const beep = (t, freq, dur) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "square";
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.25, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(t);
+      osc.stop(t + dur);
+    };
+    beep(ctx.currentTime, 860, 0.18);
+    beep(ctx.currentTime + 0.28, 520, 0.26);
+    setTimeout(() => ctx.close().catch(() => {}), 900);
+  } catch (e) { /* audio not available */ }
+}
+
 function renderExpenses() {
   const body = document.getElementById("expenseBody");
   body.innerHTML = "";
 
   document.getElementById("totalMembers").textContent = expenses.length;
-  document.getElementById("totalCollected").textContent = fmt(TOTAL_EXPENSES_AGREED);
+  document.getElementById("totalCollected").textContent = fmt(TOTAL_COLLECTION);
   document.getElementById("totalPending").textContent = fmt(TOTAL_EXPENSES_PENDING);
-  const totalCollection = computeSummary(allData).collected + TOTAL_EXTRA;
-  document.getElementById("netBalance").textContent = fmt(totalCollection - TOTAL_EXPENSES_PAID);
+  document.getElementById("netBalance").textContent = fmt(getExpenseNetBalance());
+  updateBudgetDeficitAlert();
 
   expenses.forEach((e, i) => {
     const row = document.createElement("tr");
@@ -249,14 +302,10 @@ function computeSummary(list) {
 
 function renderSummary(data) {
   const s = computeSummary(data);
-  const extra = (currentMembership === "all") ? TOTAL_EXTRA : 0;
   document.getElementById("totalMembers").textContent = s.count;
-  document.getElementById("totalCollected").textContent = fmt(s.collected + extra);
+  document.getElementById("totalCollected").textContent = fmt(TOTAL_COLLECTION);
   document.getElementById("totalPending").textContent = fmt(s.pending);
-  const net = (currentMembership === "all")
-    ? (s.collected + TOTAL_EXTRA) - TOTAL_EXPENSES_PAID
-    : (currentMembership === "expenses") ? TOTAL_EXPENSES_AGREED - TOTAL_EXPENSES_PAID : 0;
-  document.getElementById("netBalance").textContent = fmt(net);
+  document.getElementById("netBalance").textContent = fmt(TOTAL_COLLECTION - TOTAL_EXPENSES_PAID);
 }
 
 // Animate counter
@@ -399,9 +448,9 @@ updateTable();
 // Animate initial summary with full totals
 const allSummary = computeSummary(allData);
 animateValue(document.getElementById("totalMembers"), allSummary.count);
-animateValue(document.getElementById("totalCollected"), allSummary.collected + TOTAL_EXTRA, "₹");
+animateValue(document.getElementById("totalCollected"), TOTAL_COLLECTION, "₹");
 animateValue(document.getElementById("totalPending"), allSummary.pending, "₹");
-animateValue(document.getElementById("netBalance"), (allSummary.collected + TOTAL_EXTRA) - TOTAL_EXPENSES_PAID, "₹");
+animateValue(document.getElementById("netBalance"), TOTAL_COLLECTION - TOTAL_EXPENSES_PAID, "₹");
 
 // Filters
 filterBtns.forEach((btn) => {
@@ -422,7 +471,10 @@ membershipBtns.forEach((btn) => {
     if (type === "100") currentMembership = "100%";
     else if (type === "50") currentMembership = "50%";
     else if (type === "receipts") currentMembership = "receipts";
-    else if (type === "expenses") currentMembership = "expenses";
+    else if (type === "expenses") {
+      currentMembership = "expenses";
+      if (isBudgetDeficit()) playWarningBeep();
+    }
     else currentMembership = "all";
     currentFilter = "all";
     filterBtns.forEach((b) => b.classList.remove("active"));
@@ -440,7 +492,7 @@ searchInput.addEventListener("input", updateTable);
 const history2025 = [
   { id: 1, name: "ओम मराठे", paid: 14000, status: "paid" },
   { id: 2, name: "कमलेश पाटिल", paid: 14000, status: "paid" },
-  { id: 3, name: "राणा राजपूत", paid: 2000, status: "partial" },
+  { id: 3, name: "राणा राजपूत", paid: 14000, status: "paid" },
   { id: 4, name: "सुनील कोळी", paid: 10000, status: "partial" },
 ];
 

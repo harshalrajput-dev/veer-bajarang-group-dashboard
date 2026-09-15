@@ -838,6 +838,75 @@ body::before {
 .pending-card .card-value { color: var(--red); }
 
 /* ============================================
+   BUDGET DEFICIT WARNING BANNER
+   ============================================ */
+.deficit-banner {
+  max-width: 1100px;
+  margin: 30px auto 0;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(160deg, rgba(231, 76, 60, 0.18), rgba(120, 20, 10, 0.30));
+  border: 1px solid rgba(231, 76, 60, 0.55);
+  border-left: 5px solid var(--red);
+  border-radius: var(--radius-sm);
+  color: #ffd9d4;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: 'Tiro Devanagari Marathi', 'Rozha One', serif;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  animation: deficitBannerPulse 1.8s ease-in-out infinite;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.deficit-banner-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  animation: deficitShake 0.6s ease-in-out infinite;
+}
+
+@keyframes deficitBannerPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.45); }
+  50% { box-shadow: 0 0 16px rgba(231, 76, 60, 0.65); }
+}
+
+@keyframes deficitShake {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(12deg); }
+}
+
+/* Net Balance card red pulsing outline when budget deficit */
+.net-card.deficit-alert {
+  border-color: var(--red) !important;
+  animation: netCardRedPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes netCardRedPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.55);
+    border-color: var(--red);
+  }
+  50% {
+    box-shadow: 0 0 0 9px rgba(231, 76, 60, 0);
+    border-color: #ff6a5e;
+  }
+}
+
+@media (max-width: 480px) {
+  .deficit-banner {
+    font-size: 0.82rem;
+    flex-direction: row;
+    padding: 12px 12px;
+    margin: 22px auto 0;
+  }
+}
+
+/* ============================================
    CONTROLS (Filters + Search)
    ============================================ */
 .controls-section {
