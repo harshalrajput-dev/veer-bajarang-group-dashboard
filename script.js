@@ -6,6 +6,9 @@
 
 const TARGET_FULL = 5100;
 const TARGET_HALF = 2100;
+const GUEST_CONTRIBUTIONS = 56100; // ₹5,100 (Jigneshbhai) + ₹51,000 (Samrat)
+const RECEIPT_COLLECTION = 16661; // रामेश्वर नगर पावती संग्रह एकूण
+const TOTAL_EXTRA = GUEST_CONTRIBUTIONS + RECEIPT_COLLECTION;
 
 const members = [
   // ─── 100% MEMBERS (target ₹5,100) ───
@@ -28,11 +31,11 @@ const members = [
 
   // Partial Paid
   { id: "VBG-015", name: "दीपक पाटिल (रिक्षावाला)", paid: 5000, membershipType: "100%" },
-  { id: "VBG-016", name: "जितेंद्र पाटिल (मयूर)", paid: 1000, membershipType: "100%" },
+  { id: "VBG-016", name: "जितेंद्र पाटिल (मयूर)", paid: 5000, membershipType: "100%" },
   { id: "VBG-017", name: "सुनील कोळी", paid: 1000, membershipType: "100%" },
-  { id: "VBG-018", name: "रोहित मांजरा", paid: 1000, membershipType: "100%" },
+  { id: "VBG-018", name: "रोहित मांजरा", paid: 3000, membershipType: "100%" },
   { id: "VBG-019", name: "ओम मराठे", paid: 5100, membershipType: "100%" },
-  { id: "VBG-020", name: "रवी सावले", paid: 1000, membershipType: "100%" },
+  { id: "VBG-020", name: "रवी सावले", paid: 5100, membershipType: "100%" },
   { id: "VBG-021", name: "नागेंद्र राय", paid: 1000, membershipType: "100%" },
 
   // Fully Pending
@@ -40,12 +43,11 @@ const members = [
   { id: "VBG-023", name: "महेश दादू पाटिल", paid: 0, membershipType: "100%" },
   { id: "VBG-024", name: "सागर मॉरीस", paid: 5100, membershipType: "100%" },
   { id: "VBG-025", name: "किसन राजपूत", paid: 0, membershipType: "100%" },
-  { id: "VBG-026", name: "गौरव राजपूत", paid: 0, membershipType: "100%" },
+  { id: "VBG-026", name: "गौरव राजपूत", paid: 5100, membershipType: "100%" },
   { id: "VBG-027", name: "गुलाब पाटिल मास्टर", paid: 5100, membershipType: "100%" },
-  { id: "VBG-028", name: "संदीप पाटिल", paid: 0, membershipType: "100%" },
+  { id: "VBG-028", name: "संदीप पाटिल", paid: 2100, membershipType: "50%" },
   { id: "VBG-029", name: "प्रवीण राजपूत", paid: 0, membershipType: "100%" },
   { id: "VBG-030", name: "तुषार पाटिल दादा", paid: 5100, membershipType: "100%" },
-  { id: "VBG-031", name: "भैय्याभाऊ पाटिल", paid: 0, membershipType: "100%" },
   { id: "VBG-032", name: "अजय सोनवणे", paid: 0, membershipType: "100%" },
   { id: "VBG-033", name: "जांबु पाटिल", paid: 0, membershipType: "100%" },
   { id: "VBG-034", name: "वाल्मीक पाटिल", paid: 0, membershipType: "100%" },
@@ -56,27 +58,28 @@ const members = [
   { id: "VBG-039", name: "गणेश बिरडे", paid: 0, membershipType: "100%" },
   { id: "VBG-040", name: "भूषण बाविस्कर", paid: 5100, membershipType: "100%" },
 
-  // ─── 50% MEMBERS (target ₹2,550) ───
+  // ─── 50% MEMBERS (target ₹2,100) ───
 
+  { id: "VBG-031", name: "भैय्याभाऊ पाटिल", paid: 2100, membershipType: "50%" },
   { id: "VBG-041", name: "उमेश बाबूल", paid: 2100, membershipType: "50%" },
   { id: "VBG-042", name: "मनोज कोळी", paid: 0, membershipType: "50%" },
   { id: "VBG-043", name: "तुशाल पाटिल bJP", paid: 0, membershipType: "50%" },
   { id: "VBG-044", name: "जितु पाटिल", paid: 0, membershipType: "50%" },
   { id: "VBG-045", name: "योगेश (56)", paid: 0, membershipType: "50%" },
-  { id: "VBG-046", name: "हितेश पारधी", paid: 0, membershipType: "50%" },
+  { id: "VBG-046", name: "हितेश पारधी", paid: 1001, membershipType: "50%" },
   { id: "VBG-047", name: "गणेश डॉन", paid: 0, membershipType: "50%" },
   { id: "VBG-048", name: "हितेश दादू", paid: 0, membershipType: "50%" },
   { id: "VBG-049", name: "चेतन सावण bJP", paid: 0, membershipType: "50%" },
   { id: "VBG-050", name: "भूरा", paid: 0, membershipType: "50%" },
-  { id: "VBG-051", name: "भरत", paid: 0, membershipType: "50%" },
-  { id: "VBG-052", name: "योगेश धोनी", paid: 0, membershipType: "50%" },
+  { id: "VBG-051", name: "भरत", paid: 1100, membershipType: "50%" },
+  { id: "VBG-052", name: "योगेश धोनी", paid: 2100, membershipType: "50%" },
   { id: "VBG-053", name: "विक्की", paid: 0, membershipType: "50%" },
   { id: "VBG-054", name: "समाधान पाटिल (चोपडा)", paid: 2100, membershipType: "50%" },
   { id: "VBG-055", name: "गणेश कोळी", paid: 2100, membershipType: "50%" },
   { id: "VBG-056", name: "हर्षल गोरख कोळी", paid: 0, membershipType: "50%" },
-  { id: "VBG-057", name: "आकाश नानाभाऊ कोळी", paid: 0, membershipType: "50%" },
-  { id: "VBG-058", name: "रोहित रविन्द्र सोनवणे", paid: 2100, membershipType: "50%" },
-  { id: "VBG-059", name: "विलास दत्तू पाटिल (सोनू)", paid: 1000, membershipType: "50%" },
+  { id: "VBG-057", name: "आकाश नानाभाऊ कोळी", paid: 2100, membershipType: "50%" },
+  { id: "VBG-058", name: "रोहित रविन्द्र सोनवणे", paid: 0, membershipType: "50%" },
+  { id: "VBG-059", name: "विलास दत्तू पाटिल (सोनू)", paid: 2100, membershipType: "50%" },
 ];
 
 // Enrich data — uses the correct target per membership type
@@ -97,6 +100,141 @@ const enriched = members.map((m) => {
   return { ...m, pending, status, target };
 });
 
+// ─── RECEIPT COLLECTION (रामेश्वर नगर) ───
+const receipts = [
+  { no: 1, area: "रामेश्वर नगर (गली नं. १, २)", amount: 4755 },
+  { no: 2, area: "रामेश्वर नगर (गली नं. १, २)", amount: 4904 },
+  { no: 3, area: "रामेश्वर नगर (गली नं. १, २)", amount: 7002 },
+];
+
+function renderReceipts() {
+  const body = document.getElementById("receiptBody");
+  body.innerHTML = "";
+
+  document.getElementById("totalMembers").textContent = receipts.length;
+  document.getElementById("totalCollected").textContent = fmt(RECEIPT_COLLECTION);
+  document.getElementById("totalPending").textContent = fmt(0);
+
+  receipts.forEach((r, i) => {
+    const row = document.createElement("tr");
+    row.style.animationDelay = `${i * 30}ms`;
+    row.innerHTML = `
+      <td><span class="member-id">पावती #${r.no}</span></td>
+      <td>${r.area}</td>
+      <td>${fmt(r.amount)}</td>
+      <td><span class="status-badge status-paid">✅ जमा / पूर्ण</span></td>
+    `;
+    body.appendChild(row);
+  });
+
+  const totalRow = document.createElement("tr");
+  totalRow.innerHTML = `
+    <td colspan="2"><strong>एकूण पावती जमा</strong></td>
+    <td><strong>${fmt(RECEIPT_COLLECTION)}</strong></td>
+    <td><span class="status-badge status-paid">✅ पूर्ण</span></td>
+  `;
+  body.appendChild(totalRow);
+}
+
+// ─── EXPENSES (ખર્ચ હિશોબ) ───
+const expenses = [
+  { name: "गणपती बाप्पाची मुर्ती", total: 40100, paid: 40100 },
+  { name: "श्री म्युझिकल बँड", total: 67000, paid: 67000 },
+  { name: "मंडप", total: 46000, paid: 6000 },
+  { name: "छत्री", total: 7000, paid: 7000 },
+  { name: "गणपती डायमंड डेकोरेट", total: 10000, paid: 2000 },
+  { name: "महाराज पूजा", total: 1100, paid: 1100 },
+  { name: "फटाके", total: 10080, paid: 10080 },
+  { name: "गणपती बाप्पा हार अँड बुके", total: 1100, paid: 1100 },
+  { name: "बँड वाल्यांच जेवण (सकाळी + रात्री)", total: 2500, paid: 2500 },
+  { name: "कॅमेरा विडिओ वाला", total: 2000, paid: 1000 },
+  { name: "रशीद बुक", total: 850, paid: 850 },
+  { name: "दोरी वायरसाठी", total: 400, paid: 400 },
+  { name: "बॅनर", total: 6000, paid: 6000 },
+  { name: "स्वागत साठी केस गमच्छा", total: 900, paid: 900 },
+  { name: "सेटिंग तार", total: 100, paid: 100 },
+  { name: "किरकोळ", total: 100, paid: 100 },
+  { name: "गणपती कपडा", total: 500, paid: 500 },
+  { name: "किरकोळ", total: 100, paid: 100 },
+  { name: "किरकोळ", total: 100, paid: 100 },
+  { name: "किरकोळ", total: 950, paid: 950 },
+  { name: "I card", total: 4200, paid: 4200 },
+  { name: "बँड वाले माणसांना प्लेट, वाटी, ग्लास", total: 250, paid: 250 },
+  { name: "लारा", total: 6000, paid: 6000 },
+  { name: "मंगलमूर्ती", total: 500, paid: 500 },
+  { name: "पाणी बाटली", total: 300, paid: 300 },
+  { name: "ક્રેન (Crane)", total: 1400, paid: 1400 },
+  { name: "बाप्पा उचलण्याचे माणसे", total: 300, paid: 300 },
+  { name: "फुगे बँड वर लावण्याचे", total: 200, paid: 200 },
+  { name: "झेंडा पारधा सिलाई", total: 500, paid: 500 },
+  { name: "गणपती बाप्पाची पिशवी", total: 450, paid: 450 },
+  { name: "पियोपी माती", total: 100, paid: 100 },
+  { name: "सेंटिंग तार", total: 50, paid: 50 },
+  { name: "रांगोळी", total: 80, paid: 80 },
+  { name: "किरकोळ", total: 100, paid: 100 },
+  { name: "ट्रॅक्टर डिझेल", total: 1000, paid: 1000 },
+  { name: "ट्रॅक्टर ड्रॉइव्हिंग", total: 1000, paid: 1000 },
+  { name: "लारा वेल्डिंग", total: 300, paid: 300 },
+  { name: "सिंगर बक्षीस बँड", total: 1000, paid: 1000 },
+  { name: "4 क्लिप गाडी", total: 2500, paid: 2500 },
+  { name: "पिशवी गणपती", total: 450, paid: 450 },
+  { name: "बँड पूजा", total: 120, paid: 120 },
+  { name: "वायर spiro", total: 150, paid: 150 },
+  { name: "फुले", total: 200, paid: 200 },
+  { name: "गणपती बाप्पा डेकोरेट साठी धुवा", total: 3000, paid: 3000 },
+  { name: "पाणी बाटली बँड", total: 300, paid: 300 },
+  { name: "खट्टा", total: 100, paid: 100 },
+  { name: "गणपती बाप्पा पूजा", total: 670, paid: 670 },
+  { name: "तेल, घी, नारळ", total: 350, paid: 350 },
+  { name: "फळ (नगीनचे पान)", total: 180, paid: 180 },
+  { name: "किरण पाटील ट्रस्ट", total: 25000, paid: 5000 }
+];
+
+const TOTAL_EXPENSES_AGREED = expenses.reduce((s, e) => s + e.total, 0);
+const TOTAL_EXPENSES_PAID = expenses.reduce((s, e) => s + e.paid, 0);
+const TOTAL_EXPENSES_PENDING = TOTAL_EXPENSES_AGREED - TOTAL_EXPENSES_PAID; // मंडप ₹40k + डायमंड डेकोरेट ₹8k + कॅमेरा ₹1k
+
+function renderExpenses() {
+  const body = document.getElementById("expenseBody");
+  body.innerHTML = "";
+
+  document.getElementById("totalMembers").textContent = expenses.length;
+  document.getElementById("totalCollected").textContent = fmt(TOTAL_EXPENSES_AGREED);
+  document.getElementById("totalPending").textContent = fmt(TOTAL_EXPENSES_PENDING);
+  const totalCollection = computeSummary(allData).collected + TOTAL_EXTRA;
+  document.getElementById("netBalance").textContent = fmt(totalCollection - TOTAL_EXPENSES_PAID);
+
+  expenses.forEach((e, i) => {
+    const row = document.createElement("tr");
+    row.style.animationDelay = `${i * 30}ms`;
+    const pending = e.total - e.paid;
+    const pendingClass = pending === 0 ? "pending-amount-zero" : "pending-amount-red";
+    let statusStr;
+    if (pending === 0) statusStr = `<span class="status-badge status-paid">✅ पूर्ण</span>`;
+    else if (pending < e.total) statusStr = `<span class="status-badge status-partial">🔄 अर्ध</span>`;
+    else statusStr = `<span class="status-badge status-pending">⏳ बाकी</span>`;
+    row.innerHTML = `
+      <td>${i + 1}</td>
+      <td>${e.name}</td>
+      <td>${fmt(e.total)}</td>
+      <td>${fmt(e.paid)}</td>
+      <td class="${pendingClass}">${fmt(pending)}</td>
+      <td>${statusStr}</td>
+    `;
+    body.appendChild(row);
+  });
+
+  const totalRow = document.createElement("tr");
+  totalRow.innerHTML = `
+    <td colspan="2"><strong>एकूण खर्च</strong></td>
+    <td><strong>${fmt(TOTAL_EXPENSES_AGREED)}</strong></td>
+    <td><strong>${fmt(TOTAL_EXPENSES_PAID)}</strong></td>
+    <td class="pending-amount-red"><strong>${fmt(TOTAL_EXPENSES_PENDING)}</strong></td>
+    <td><span class="status-badge status-pending">⏳ बाकी ${fmt(TOTAL_EXPENSES_PENDING)}</span></td>
+  `;
+  body.appendChild(totalRow);
+}
+
 // ─── SUMMARY HELPERS ───
 const fmt = (n) => "₹" + n.toLocaleString("en-IN");
 
@@ -111,9 +249,14 @@ function computeSummary(list) {
 
 function renderSummary(data) {
   const s = computeSummary(data);
+  const extra = (currentMembership === "all") ? TOTAL_EXTRA : 0;
   document.getElementById("totalMembers").textContent = s.count;
-  document.getElementById("totalCollected").textContent = fmt(s.collected);
+  document.getElementById("totalCollected").textContent = fmt(s.collected + extra);
   document.getElementById("totalPending").textContent = fmt(s.pending);
+  const net = (currentMembership === "all")
+    ? (s.collected + TOTAL_EXTRA) - TOTAL_EXPENSES_PAID
+    : (currentMembership === "expenses") ? TOTAL_EXPENSES_AGREED - TOTAL_EXPENSES_PAID : 0;
+  document.getElementById("netBalance").textContent = fmt(net);
 }
 
 // Animate counter
@@ -215,6 +358,34 @@ function getFilteredData() {
 }
 
 function updateTable() {
+  const controlsSection = document.querySelector(".controls-section");
+  const membersTableSection = document.querySelector(".table-section");
+  const receiptSection = document.getElementById("receiptSection");
+  const expenseSection = document.getElementById("expenseSection");
+
+  if (currentMembership === "receipts") {
+    controlsSection.style.display = "none";
+    membersTableSection.style.display = "none";
+    receiptSection.style.display = "block";
+    expenseSection.style.display = "none";
+    renderReceipts();
+    return;
+  }
+
+  if (currentMembership === "expenses") {
+    controlsSection.style.display = "none";
+    membersTableSection.style.display = "none";
+    receiptSection.style.display = "none";
+    expenseSection.style.display = "block";
+    renderExpenses();
+    return;
+  }
+
+  controlsSection.style.display = "";
+  membersTableSection.style.display = "";
+  receiptSection.style.display = "none";
+  expenseSection.style.display = "none";
+
   const data = getFilteredData();
   renderTable(data);
   renderSummary(data);
@@ -228,8 +399,9 @@ updateTable();
 // Animate initial summary with full totals
 const allSummary = computeSummary(allData);
 animateValue(document.getElementById("totalMembers"), allSummary.count);
-animateValue(document.getElementById("totalCollected"), allSummary.collected, "₹");
+animateValue(document.getElementById("totalCollected"), allSummary.collected + TOTAL_EXTRA, "₹");
 animateValue(document.getElementById("totalPending"), allSummary.pending, "₹");
+animateValue(document.getElementById("netBalance"), (allSummary.collected + TOTAL_EXTRA) - TOTAL_EXPENSES_PAID, "₹");
 
 // Filters
 filterBtns.forEach((btn) => {
@@ -247,7 +419,11 @@ membershipBtns.forEach((btn) => {
     membershipBtns.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
     const type = btn.dataset.type;
-    currentMembership = type === "all" ? "all" : type === "100" ? "100%" : "50%";
+    if (type === "100") currentMembership = "100%";
+    else if (type === "50") currentMembership = "50%";
+    else if (type === "receipts") currentMembership = "receipts";
+    else if (type === "expenses") currentMembership = "expenses";
+    else currentMembership = "all";
     currentFilter = "all";
     filterBtns.forEach((b) => b.classList.remove("active"));
     document.querySelector('.filter-btn[data-filter="all"]').classList.add("active");
