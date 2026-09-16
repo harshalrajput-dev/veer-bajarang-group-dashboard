@@ -8,8 +8,11 @@ const TARGET_FULL = 5100;
 const TARGET_HALF = 2100;
 const GUEST_CONTRIBUTIONS = 56100; // ₹5,100 (Jigneshbhai) + ₹51,000 (Samrat)
 const RECEIPT_COLLECTION = 16661; // रामेश्वर नगर पावती संग्रह एकूण
+const TOTAL_MEMBERSHIP_100 = 122100; // 100% membership collection
+const TOTAL_MEMBERSHIP_50 = 20001; // 50% membership collection
+const COLLECTION_2025 = 52000; // 2025 collection
 const TOTAL_EXTRA = GUEST_CONTRIBUTIONS + RECEIPT_COLLECTION;
-const TOTAL_COLLECTION = 213762 + 40000;
+const TOTAL_COLLECTION = TOTAL_MEMBERSHIP_100 + TOTAL_MEMBERSHIP_50 + GUEST_CONTRIBUTIONS + RECEIPT_COLLECTION + COLLECTION_2025;
 
 const members = [
   // ─── 100% MEMBERS (target ₹5,100) ───
@@ -49,8 +52,8 @@ const members = [
   { id: "VBG-028", name: "संदीप पाटिल", paid: 2100, membershipType: "50%" },
   { id: "VBG-029", name: "प्रवीण राजपूत", paid: 0, membershipType: "100%" },
   { id: "VBG-030", name: "तुषार पाटिल दादा", paid: 5100, membershipType: "100%" },
-  { id: "VBG-032", name: "अजय सोनवणे", paid: 0, membershipType: "100%" },
-  { id: "VBG-033", name: "जांबु पाटिल", paid: 0, membershipType: "100%" },
+  { id: "VBG-032", name: "अजय सोनवणे", paid: 1100, membershipType: "50%" },
+  { id: "VBG-033", name: "जंबू पाटिल", paid: 0, membershipType: "100%" },
   { id: "VBG-034", name: "वाल्मीक पाटिल", paid: 0, membershipType: "100%" },
   { id: "VBG-035", name: "मुकेश पाटिल", paid: 0, membershipType: "100%" },
   { id: "VBG-036", name: "योगेश पाटिल नाना", paid: 5100, membershipType: "100%" },
@@ -113,7 +116,7 @@ function renderReceipts() {
   body.innerHTML = "";
 
   document.getElementById("totalMembers").textContent = receipts.length;
-  document.getElementById("totalCollected").textContent = fmt(TOTAL_COLLECTION);
+  document.getElementById("totalCollected").textContent = fmt(RECEIPT_COLLECTION);
   document.getElementById("totalPending").textContent = fmt(0);
   document.getElementById("netBalance").textContent = fmt(getExpenseNetBalance());
 
@@ -303,7 +306,9 @@ function computeSummary(list) {
 function renderSummary(data) {
   const s = computeSummary(data);
   document.getElementById("totalMembers").textContent = s.count;
-  document.getElementById("totalCollected").textContent = fmt(TOTAL_COLLECTION);
+  const collected =
+    currentMembership === "all" ? TOTAL_COLLECTION : s.collected;
+  document.getElementById("totalCollected").textContent = fmt(collected);
   document.getElementById("totalPending").textContent = fmt(s.pending);
   document.getElementById("netBalance").textContent = fmt(TOTAL_COLLECTION - TOTAL_EXPENSES_PAID);
 }
@@ -490,23 +495,25 @@ searchInput.addEventListener("input", updateTable);
    2025 HISTORY & PENDING BALANCE
    ============================================ */
 const history2025 = [
-  { id: 1, name: "ओम मराठे", paid: 14000, status: "paid" },
-  { id: 2, name: "कमलेश पाटिल", paid: 14000, status: "paid" },
-  { id: 3, name: "राणा राजपूत", paid: 14000, status: "paid" },
-  { id: 4, name: "सुनील कोळी", paid: 10000, status: "partial" },
+  { id: 1, name: "ओम मराठे", target: 14000, paid: 14000, status: "paid" },
+  { id: 2, name: "कमलेश पाटिल", target: 14000, paid: 14000, status: "paid" },
+  { id: 3, name: "राणा राजपूत", target: 14000, paid: 14000, status: "paid" },
+  { id: 4, name: "जंबू", target: 10000, paid: 10000, status: "paid" },
+  { id: 5, name: "सुनील कोळी", target: 14000, paid: 10000, status: "partial" },
 ];
-
-const H_TARGET = 14000;
 
 const historyEnriched = history2025.map((m) => ({
   ...m,
-  pending: H_TARGET - m.paid,
+  pending: m.target - m.paid,
 }));
 
-// Displayed summary values (as per official 2025 records)
-const hCollected = 40000;
-const hRemaining = 16000;
+// Official 2025 aggregate totals (जंबू's separate ₹10,000 excluded)
+const historyOfficial = historyEnriched.filter((m) => m.name !== "जंबू");
+const hGoal = historyOfficial.reduce((s, m) => s + m.target, 0);
+const hCollected = historyOfficial.reduce((s, m) => s + m.paid, 0);
+const hRemaining = hGoal - hCollected;
 
+document.getElementById("hGoal").textContent = "₹" + hGoal.toLocaleString("en-IN");
 document.getElementById("hCollected").textContent = "₹" + hCollected.toLocaleString("en-IN");
 document.getElementById("hRemaining").textContent = "₹" + hRemaining.toLocaleString("en-IN");
 
