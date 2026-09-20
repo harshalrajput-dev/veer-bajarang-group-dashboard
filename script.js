@@ -12,9 +12,9 @@ const TOTAL_MEMBERSHIP_50 = 20001; // 50% membership collection
 const COLLECTION_2025 = 52000; // 2025 collection
 
 const receipts = [
-  { no: 1, area: "रामेश्वर नगर (गली नं. १, २)", amount: 9310 },
-  { no: 2, area: "रामेश्वर नगर (गली नं. १, २)", amount: 6368 },
-  { no: 3, area: "रामेश्वर नगर (गली नं. १, २)", amount: 10623 },
+  { no: 1, area: "रामेश्वर नगर (गली नं. १, २)", amount: 4755 },
+  { no: 2, area: "रामेश्वर नगर (गली नं. १, २)", amount: 4904 },
+  { no: 3, area: "रामेश्वर नगर (गली नं. १, २)", amount: 7002 },
 ];
 
 const RECEIPT_COLLECTION = receipts.reduce((s, r) => s + r.amount, 0); // रामेश्वर नगर पावती संग्रह एकूण (dynamic)
