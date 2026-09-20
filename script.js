@@ -44,7 +44,7 @@ const members = [
   { id: "VBG-015", name: "दीपक पाटिल (रिक्षावाला)", paid: 5000, membershipType: "100%" },
   { id: "VBG-016", name: "जितेंद्र पाटिल (मयूर)", paid: 5000, membershipType: "100%" },
   { id: "VBG-017", name: "सुनील कोळी", paid: 1000, membershipType: "100%" },
-  { id: "VBG-018", name: "रोहित मांजरा", paid: 3000, membershipType: "100%" },
+  { id: "VBG-018", name: "रोहित मांजरा", paid: 5100, membershipType: "100%" },
   { id: "VBG-019", name: "ओम मराठे", paid: 5100, membershipType: "100%" },
   { id: "VBG-020", name: "रवी सावले", paid: 5100, membershipType: "100%" },
   { id: "VBG-021", name: "नागेंद्र राय", paid: 1000, membershipType: "100%" },
@@ -212,7 +212,9 @@ const expenses = [
   { name: "सत्यनारायण महाराज", total: 3100, paid: 3100 },
   { name: "मुलांचे गेम", total: 500, paid: 500 },
   { name: "श्री स्वामी समर्थ (दादा लाईट डेकोरेट)", total: 18000, paid: 0 },
-  { name: "Dj साउंड (लाला)", total: 7000, paid: 0 }
+  { name: "Dj साउंड (लाला)", total: 7000, paid: 0 },
+  { name: "सत्यनारायण पूजा", total: 1450, paid: 1450 },
+  { name: "सत्यनारायण भंडारा सामान", total: 4200, paid: 4200 }
 ];
 
 const TOTAL_EXPENSES_AGREED = expenses.reduce((s, e) => s + e.total, 0);
