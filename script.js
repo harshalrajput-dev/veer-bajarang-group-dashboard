@@ -7,10 +7,17 @@
 const TARGET_FULL = 5100;
 const TARGET_HALF = 2100;
 const GUEST_CONTRIBUTIONS = 56100; // ₹5,100 (Jigneshbhai) + ₹51,000 (Samrat)
-const RECEIPT_COLLECTION = 16661; // रामेश्वर नगर पावती संग्रह एकूण
 const TOTAL_MEMBERSHIP_100 = 122100; // 100% membership collection
 const TOTAL_MEMBERSHIP_50 = 20001; // 50% membership collection
 const COLLECTION_2025 = 52000; // 2025 collection
+
+const receipts = [
+  { no: 1, area: "रामेश्वर नगर (गली नं. १, २)", amount: 9310 },
+  { no: 2, area: "रामेश्वर नगर (गली नं. १, २)", amount: 6368 },
+  { no: 3, area: "रामेश्वर नगर (गली नं. १, २)", amount: 10623 },
+];
+
+const RECEIPT_COLLECTION = receipts.reduce((s, r) => s + r.amount, 0); // रामेश्वर नगर पावती संग्रह एकूण (dynamic)
 const TOTAL_EXTRA = GUEST_CONTRIBUTIONS + RECEIPT_COLLECTION;
 const TOTAL_COLLECTION = TOTAL_MEMBERSHIP_100 + TOTAL_MEMBERSHIP_50 + GUEST_CONTRIBUTIONS + RECEIPT_COLLECTION + COLLECTION_2025;
 
@@ -59,7 +66,6 @@ const members = [
   { id: "VBG-036", name: "योगेश पाटिल नाना", paid: 5100, membershipType: "100%" },
   { id: "VBG-037", name: "कमलेश पाटिल", paid: 0, membershipType: "100%" },
   { id: "VBG-038", name: "गोपाल भाटु पाटिल", paid: 0, membershipType: "100%" },
-  { id: "VBG-039", name: "गणेश बिरडे", paid: 0, membershipType: "100%" },
   { id: "VBG-040", name: "भूषण बाविस्कर", paid: 5100, membershipType: "100%" },
 
   // ─── 50% MEMBERS (target ₹2,100) ───
@@ -84,6 +90,10 @@ const members = [
   { id: "VBG-057", name: "आकाश नानाभाऊ कोळी", paid: 2100, membershipType: "50%" },
   { id: "VBG-058", name: "रोहित रविन्द्र सोनवणे", paid: 0, membershipType: "50%" },
   { id: "VBG-059", name: "विलास दत्तू पाटिल (सोनू)", paid: 2100, membershipType: "50%" },
+  { id: "VBG-060", name: "मनोज कोळी (रिक्षावाला)", paid: 2000, membershipType: "50%" },
+  { id: "VBG-039", name: "गणेश बिरडे", paid: 1100, membershipType: "50%" }
+  
+  
 ];
 
 // Enrich data — uses the correct target per membership type
@@ -105,12 +115,6 @@ const enriched = members.map((m) => {
 });
 
 // ─── RECEIPT COLLECTION (रामेश्वर नगर) ───
-const receipts = [
-  { no: 1, area: "रामेश्वर नगर (गली नं. १, २)", amount: 4755 },
-  { no: 2, area: "रामेश्वर नगर (गली नं. १, २)", amount: 4904 },
-  { no: 3, area: "रामेश्वर नगर (गली नं. १, २)", amount: 7002 },
-];
-
 function renderReceipts() {
   const body = document.getElementById("receiptBody");
   body.innerHTML = "";
@@ -119,6 +123,8 @@ function renderReceipts() {
   document.getElementById("totalCollected").textContent = fmt(RECEIPT_COLLECTION);
   document.getElementById("totalPending").textContent = fmt(0);
   document.getElementById("netBalance").textContent = fmt(getExpenseNetBalance());
+  document.getElementById("receiptTotalBadge").textContent = "एकूण पावती जमा: " + fmt(RECEIPT_COLLECTION) + " ✅ पूर्ण";
+  document.getElementById("receiptNavLabel").textContent = "पावती संग्रह (" + fmt(RECEIPT_COLLECTION) + ")";
 
   receipts.forEach((r, i) => {
     const row = document.createElement("tr");
@@ -145,14 +151,14 @@ function renderReceipts() {
 const expenses = [
   { name: "गणपती बाप्पाची मुर्ती", total: 40100, paid: 40100 },
   { name: "श्री म्युझिकल बँड", total: 67000, paid: 67000 },
-  { name: "मंडप", total: 46000, paid: 6000 },
+  { name: "मंडप", total: 46000, paid: 46000 },
   { name: "छत्री", total: 7000, paid: 7000 },
   { name: "गणपती डायमंड डेकोरेट", total: 10000, paid: 2000 },
   { name: "महाराज पूजा", total: 1100, paid: 1100 },
   { name: "फटाके", total: 10080, paid: 10080 },
   { name: "गणपती बाप्पा हार अँड बुके", total: 1100, paid: 1100 },
   { name: "बँड वाल्यांच जेवण (सकाळी + रात्री)", total: 2500, paid: 2500 },
-  { name: "कॅमेरा विडिओ वाला", total: 2000, paid: 1000 },
+  { name: "कॅमेरा विडिओ वाला", total: 2000, paid: 2000 },
   { name: "रशीद बुक", total: 850, paid: 850 },
   { name: "दोरी वायरसाठी", total: 400, paid: 400 },
   { name: "बॅनर", total: 6000, paid: 6000 },
@@ -192,7 +198,21 @@ const expenses = [
   { name: "गणपती बाप्पा पूजा", total: 670, paid: 670 },
   { name: "तेल, घी, नारळ", total: 350, paid: 350 },
   { name: "फळ (नगीनचे पान)", total: 180, paid: 180 },
-  { name: "किरण पाटील ट्रस्ट", total: 25000, paid: 5000 }
+  { name: "किरण पाटील ट्रस्ट", total: 25000, paid: 25000 },
+  { name: "बँड (worker)", total: 300, paid: 300 },
+  { name: "पानी बॉटल", total: 150, paid: 150 },
+  { name: "रिक्षा (gas)", total: 100, paid: 100 },
+  { name: "वर्कर", total: 500, paid: 500 },
+  { name: "बॅनर", total: 2100, paid: 2100 },
+  { name: "पुजारी महाराज स्थापना", total: 1100, paid: 1100 },
+  { name: "ट्रॅक्टर", total: 1000, paid: 1000 },
+  { name: "गणपती बाप्पा प्रसाद", total: 350, paid: 350 },
+  { name: "गणपती बाप्पा किरकोळ समान", total: 350, paid: 350 },
+  { name: "पोलिस बॅनर", total: 1100, paid: 1100 },
+  { name: "सत्यनारायण महाराज", total: 3100, paid: 3100 },
+  { name: "मुलांचे गेम", total: 500, paid: 500 },
+  { name: "श्री स्वामी समर्थ (दादा लाईट डेकोरेट)", total: 18000, paid: 0 },
+  { name: "Dj साउंड (लाला)", total: 7000, paid: 0 }
 ];
 
 const TOTAL_EXPENSES_AGREED = expenses.reduce((s, e) => s + e.total, 0);
@@ -450,6 +470,10 @@ const allData = enriched;
 renderSummary(allData);
 updateTable();
 
+// Sync receipt badge & nav label from dynamic receipt total
+document.getElementById("receiptTotalBadge").textContent = "एकूण पावती जमा: " + fmt(RECEIPT_COLLECTION) + " ✅ पूर्ण";
+document.getElementById("receiptNavLabel").textContent = "पावती संग्रह (" + fmt(RECEIPT_COLLECTION) + ")";
+
 // Animate initial summary with full totals
 const allSummary = computeSummary(allData);
 animateValue(document.getElementById("totalMembers"), allSummary.count);
@@ -498,24 +522,22 @@ const history2025 = [
   { id: 1, name: "ओम मराठे", target: 14000, paid: 14000, status: "paid" },
   { id: 2, name: "कमलेश पाटिल", target: 14000, paid: 14000, status: "paid" },
   { id: 3, name: "राणा राजपूत", target: 14000, paid: 14000, status: "paid" },
-  { id: 4, name: "जंबू", target: 10000, paid: 10000, status: "paid" },
-  { id: 5, name: "सुनील कोळी", target: 14000, paid: 10000, status: "partial" },
+  { id: 4, name: "सुनील कोळी", target: 14000, paid: 14000, status: "partial" },
 ];
 
-const historyEnriched = history2025.map((m) => ({
-  ...m,
-  pending: m.target - m.paid,
-}));
+const historyEnriched = history2025.map((m) => {
+  const status = m.paid >= m.target ? "paid" : m.paid > 0 ? "partial" : "pending";
+  return { ...m, pending: m.target - m.paid, status };
+});
 
-// Official 2025 aggregate totals (जंबू's separate ₹10,000 excluded)
-const historyOfficial = historyEnriched.filter((m) => m.name !== "जंबू");
-const hGoal = historyOfficial.reduce((s, m) => s + m.target, 0);
-const hCollected = historyOfficial.reduce((s, m) => s + m.paid, 0);
-const hRemaining = hGoal - hCollected;
+const hGoal = historyEnriched.reduce((s, m) => s + m.target, 0);
+const hCollected = historyEnriched.reduce((s, m) => s + m.paid, 0);
+const hRemaining = historyEnriched.reduce((s, m) => s + m.pending, 0);
 
 document.getElementById("hGoal").textContent = "₹" + hGoal.toLocaleString("en-IN");
 document.getElementById("hCollected").textContent = "₹" + hCollected.toLocaleString("en-IN");
 document.getElementById("hRemaining").textContent = "₹" + hRemaining.toLocaleString("en-IN");
+document.getElementById("pendingRupeesBadge").textContent = "Pending Rupees " + fmt(hRemaining);
 
 function historyStatusBadge(status) {
   const labels = {
