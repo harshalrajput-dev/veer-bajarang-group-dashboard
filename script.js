@@ -43,25 +43,25 @@ const members = [
   // Partial Paid
   { id: "VBG-015", name: "दीपक पाटिल (रिक्षावाला)", paid: 5000, membershipType: "100%" },
   { id: "VBG-016", name: "जितेंद्र पाटिल (मयूर)", paid: 5000, membershipType: "100%" },
-  { id: "VBG-017", name: "सुनील कोळी", paid: 1000, membershipType: "100%" },
+  { id: "VBG-017", name: "सुनील कोळी", paid: 0, membershipType: "100%" },
   { id: "VBG-018", name: "रोहित मांजरा", paid: 5100, membershipType: "100%" },
   { id: "VBG-019", name: "ओम मराठे", paid: 5100, membershipType: "100%" },
   { id: "VBG-020", name: "रवी सावले", paid: 5100, membershipType: "100%" },
   { id: "VBG-021", name: "नागेंद्र राय", paid: 1000, membershipType: "100%" },
 
   // Fully Pending
-  { id: "VBG-022", name: "सागर सोनवणे", paid: 0, membershipType: "100%" },
+  { id: "VBG-022", name: "सागर सोनवणे", paid: 2100, membershipType: "100%" },
   { id: "VBG-023", name: "महेश दादू पाटिल", paid: 0, membershipType: "100%" },
   { id: "VBG-024", name: "सागर मॉरीस", paid: 5100, membershipType: "100%" },
   { id: "VBG-025", name: "किसन राजपूत", paid: 0, membershipType: "100%" },
   { id: "VBG-026", name: "गौरव राजपूत", paid: 5100, membershipType: "100%" },
   { id: "VBG-027", name: "गुलाब पाटिल मास्टर", paid: 5100, membershipType: "100%" },
   { id: "VBG-028", name: "संदीप पाटिल", paid: 2100, membershipType: "50%" },
-  { id: "VBG-029", name: "प्रवीण राजपूत", paid: 0, membershipType: "100%" },
+  { id: "VBG-029", name: "प्रवीण राजपूत", paid: 2100, membershipType: "50%" },
   { id: "VBG-030", name: "तुषार पाटिल दादा", paid: 5100, membershipType: "100%" },
   { id: "VBG-032", name: "अजय सोनवणे", paid: 1100, membershipType: "50%" },
   { id: "VBG-033", name: "जंबू पाटिल", paid: 0, membershipType: "100%" },
-  { id: "VBG-034", name: "वाल्मीक पाटिल", paid: 0, membershipType: "100%" },
+  { id: "VBG-034", name: "वाल्मीक पाटिल", paid: 2100, membershipType: "100%" },
   { id: "VBG-035", name: "मुकेश पाटिल", paid: 0, membershipType: "100%" },
   { id: "VBG-036", name: "योगेश पाटिल नाना", paid: 5100, membershipType: "100%" },
   { id: "VBG-037", name: "कमलेश पाटिल", paid: 0, membershipType: "100%" },
@@ -72,7 +72,7 @@ const members = [
 
   { id: "VBG-031", name: "भैय्याभाऊ पाटिल", paid: 2100, membershipType: "50%" },
   { id: "VBG-041", name: "उमेश बाबूल", paid: 2100, membershipType: "50%" },
-  { id: "VBG-042", name: "मनोज कोळी", paid: 0, membershipType: "50%" },
+  { id: "VBG-042", name: "मनोज कोळी", paid: 2000, membershipType: "50%" },
   { id: "VBG-043", name: "तुशाल पाटिल bJP", paid: 0, membershipType: "50%" },
   { id: "VBG-044", name: "जितु पाटिल", paid: 0, membershipType: "50%" },
   { id: "VBG-045", name: "योगेश (56)", paid: 0, membershipType: "50%" },
@@ -86,9 +86,9 @@ const members = [
   { id: "VBG-053", name: "विक्की", paid: 0, membershipType: "50%" },
   { id: "VBG-054", name: "समाधान पाटिल (चोपडा)", paid: 2100, membershipType: "50%" },
   { id: "VBG-055", name: "गणेश कोळी", paid: 2100, membershipType: "50%" },
-  { id: "VBG-056", name: "हर्षल गोरख कोळी", paid: 0, membershipType: "50%" },
+  { id: "VBG-056", name: "हर्षल गोरख कोळी", paid: 2100, membershipType: "50%" },
   { id: "VBG-057", name: "आकाश नानाभाऊ कोळी", paid: 2100, membershipType: "50%" },
-  { id: "VBG-058", name: "रोहित रविन्द्र सोनवणे", paid: 0, membershipType: "50%" },
+  { id: "VBG-058", name: "रोहित रविन्द्र सोनवणे", paid: 1000, membershipType: "50%" },
   { id: "VBG-059", name: "विलास दत्तू पाटिल (सोनू)", paid: 2100, membershipType: "50%" },
   { id: "VBG-060", name: "मनोज कोळी (रिक्षावाला)", paid: 2000, membershipType: "50%" },
   { id: "VBG-039", name: "गणेश बिरडे", paid: 1100, membershipType: "50%" }
@@ -153,7 +153,7 @@ const expenses = [
   { name: "श्री म्युझिकल बँड", total: 67000, paid: 67000 },
   { name: "मंडप", total: 46000, paid: 46000 },
   { name: "छत्री", total: 7000, paid: 7000 },
-  { name: "गणपती डायमंड डेकोरेट", total: 10000, paid: 2000 },
+  { name: "गणपती डायमंड डेकोरेट", total: 10000, paid: 10000 },
   { name: "महाराज पूजा", total: 1100, paid: 1100 },
   { name: "फटाके", total: 10080, paid: 10080 },
   { name: "गणपती बाप्पा हार अँड बुके", total: 1100, paid: 1100 },
@@ -211,15 +211,23 @@ const expenses = [
   { name: "पोलिस बॅनर", total: 1100, paid: 1100 },
   { name: "सत्यनारायण महाराज", total: 3100, paid: 3100 },
   { name: "मुलांचे गेम", total: 500, paid: 500 },
-  { name: "श्री स्वामी समर्थ (दादा लाईट डेकोरेट)", total: 18000, paid: 0 },
+  { name: "श्री स्वामी समर्थ (दादा लाईट डेकोरेट)", total: 13000, paid: 0 },
   { name: "Dj साउंड (लाला)", total: 7000, paid: 0 },
   { name: "सत्यनारायण पूजा", total: 1450, paid: 1450 },
-  { name: "सत्यनारायण भंडारा सामान", total: 4200, paid: 4200 }
+  { name: "सत्यनारायण भंडारा सामान", total: 4200, paid: 4200 },
+  { name: "शाकभाजी भंडारा", total: 1550, paid: 1550 },
+  { name: "टोपी अँड शॉल", total: 825, paid: 825 },
+  { name: "गॅस बाटला", total: 510, paid: 510 },
+  { name: "भांडे पोर्टर घेऊन जाणे", total: 600, paid: 600 },
+  { name: "लहान मुलांचे गिफ्ट", total: 450, paid: 450 },
+  { name: "गणपती बाप्पाचे आगमन साठी फोकस जनरेटर", total: 400, paid: 400 },
+  { name: "स्पीकर फाटून गेल्याचे (8 व्या दिवशी)", total: 1900, paid: 1900 },
+  { name: "फटाके", total: 860, paid: 860 }
 ];
 
 const TOTAL_EXPENSES_AGREED = expenses.reduce((s, e) => s + e.total, 0);
 const TOTAL_EXPENSES_PAID = expenses.reduce((s, e) => s + e.paid, 0);
-const TOTAL_EXPENSES_PENDING = TOTAL_EXPENSES_AGREED - TOTAL_EXPENSES_PAID; // मंडप ₹40k + डायमंड डेकोरेट ₹8k + कॅमेरा ₹1k
+const TOTAL_EXPENSES_PENDING = TOTAL_EXPENSES_AGREED - TOTAL_EXPENSES_PAID; // स्वामी समर्थ ₹18k + Dj साउंड ₹7k + डायमंड डेकोरेट ₹8k
 
 function getExpenseNetBalance() {
   return TOTAL_COLLECTION - TOTAL_EXPENSES_PAID;
@@ -276,6 +284,8 @@ function renderExpenses() {
   const body = document.getElementById("expenseBody");
   body.innerHTML = "";
 
+  document.getElementById("expenseTotalBadge").textContent =
+    `एकूण तयार: ${fmt(TOTAL_EXPENSES_AGREED)} | भरलेले: ${fmt(TOTAL_EXPENSES_PAID)} | बाकी: ${fmt(TOTAL_EXPENSES_PENDING)}`;
   document.getElementById("totalMembers").textContent = expenses.length;
   document.getElementById("totalCollected").textContent = fmt(TOTAL_COLLECTION);
   document.getElementById("totalPending").textContent = fmt(TOTAL_EXPENSES_PENDING);
@@ -524,7 +534,7 @@ const history2025 = [
   { id: 1, name: "ओम मराठे", target: 14000, paid: 14000, status: "paid" },
   { id: 2, name: "कमलेश पाटिल", target: 14000, paid: 14000, status: "paid" },
   { id: 3, name: "राणा राजपूत", target: 14000, paid: 14000, status: "paid" },
-  { id: 4, name: "सुनील कोळी", target: 14000, paid: 14000, status: "partial" },
+  { id: 4, name: "सुनील कोळी", target: 14000, paid: 10000, status: "partial" },
 ];
 
 const historyEnriched = history2025.map((m) => {
