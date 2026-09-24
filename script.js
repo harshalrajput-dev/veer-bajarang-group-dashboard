@@ -51,7 +51,7 @@ const members = [
 
   // Fully Pending
   { id: "VBG-022", name: "सागर सोनवणे", paid: 2100, membershipType: "100%" },
-  { id: "VBG-023", name: "महेश दादू पाटिल", paid: 0, membershipType: "100%" },
+  { id: "VBG-023", name: "महेश दादू पाटिल", paid: 5000, membershipType: "100%" },
   { id: "VBG-024", name: "सागर मॉरीस", paid: 5100, membershipType: "100%" },
   { id: "VBG-025", name: "किसन राजपूत", paid: 0, membershipType: "100%" },
   { id: "VBG-026", name: "गौरव राजपूत", paid: 5100, membershipType: "100%" },
