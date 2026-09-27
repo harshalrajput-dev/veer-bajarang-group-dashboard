@@ -222,7 +222,13 @@ const expenses = [
   { name: "लहान मुलांचे गिफ्ट", total: 450, paid: 450 },
   { name: "गणपती बाप्पाचे आगमन साठी फोकस जनरेटर", total: 400, paid: 400 },
   { name: "स्पीकर फाटून गेल्याचे (8 व्या दिवशी)", total: 1900, paid: 1900 },
-  { name: "फटाके", total: 860, paid: 860 }
+  { name: "फटाके", total: 860, paid: 860 },
+  { name: "गणपती उचलण्याचे (4 kip gadi)", total: 2600, paid: 2600 },
+  { name: "डिझेल गाडी", total: 2000, paid: 2000 },
+  { name: "गुलाल", total: 200, paid: 200 },
+  { name: "गणपती विसर्जन", total: 6100, paid: 6100 },
+  { name: "उसाचा रस", total: 400, paid: 400 },
+  { name: "दररोज ची बाप्पांना फुलहार", total: 2000, paid: 2000 }
 ];
 
 const TOTAL_EXPENSES_AGREED = expenses.reduce((s, e) => s + e.total, 0);
