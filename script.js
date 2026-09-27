@@ -9,12 +9,12 @@ const TARGET_HALF = 2100;
 const GUEST_CONTRIBUTIONS = 56100; // ₹5,100 (Jigneshbhai) + ₹51,000 (Samrat)
 const TOTAL_MEMBERSHIP_100 = 122100; // 100% membership collection
 const TOTAL_MEMBERSHIP_50 = 20001; // 50% membership collection
-const COLLECTION_2025 = 52000; // 2025 collection
+const COLLECTION_2025 = 56000; // 2025 collection
 
 const receipts = [
-  { no: 1, area: "रामेश्वर नगर (गली नं. १, २)", amount: 4755 },
-  { no: 2, area: "रामेश्वर नगर (गली नं. १, २)", amount: 4904 },
-  { no: 3, area: "रामेश्वर नगर (गली नं. १, २)", amount: 7002 },
+  { no: 1, area: "रामेश्वर नगर (गली नं. १, २)", amount: 8468 },
+  { no: 2, area: "रामेश्वर नगर (गली नं. १, २)", amount: 8620 },
+  { no: 3, area: "रामेश्वर नगर (गली नं. १, २)", amount: 10426 },
 ];
 
 const RECEIPT_COLLECTION = receipts.reduce((s, r) => s + r.amount, 0); // रामेश्वर नगर पावती संग्रह एकूण (dynamic)
@@ -540,7 +540,7 @@ const history2025 = [
   { id: 1, name: "ओम मराठे", target: 14000, paid: 14000, status: "paid" },
   { id: 2, name: "कमलेश पाटिल", target: 14000, paid: 14000, status: "paid" },
   { id: 3, name: "राणा राजपूत", target: 14000, paid: 14000, status: "paid" },
-  { id: 4, name: "सुनील कोळी", target: 14000, paid: 10000, status: "partial" },
+  { id: 4, name: "सुनील कोळी", target: 14000, paid: 14000, status: "paid" },
 ];
 
 const historyEnriched = history2025.map((m) => {

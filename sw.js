@@ -1,4 +1,4 @@
-const CACHE_NAME = 'veer-bajarang-v31';
+const CACHE_NAME = 'veer-bajarang-v33';
 const urlsToCache = [
   '/',
   '/index.html',
