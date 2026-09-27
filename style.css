@@ -617,7 +617,8 @@ body::before {
   -webkit-font-smoothing: antialiased;
 }
 
-.history-goal-badge {
+.history-goal-badge,
+.guests-total-badge {
   display: inline-block;
   background: linear-gradient(135deg, var(--dgold) 0%, var(--gold) 50%, var(--gold-dim) 100%);
   color: #0f0c20;
@@ -628,6 +629,11 @@ body::before {
   margin-bottom: 8px;
   box-shadow: 0 0 14px rgba(255, 183, 3, 0.4);
   text-rendering: optimizeLegibility;
+}
+
+.guests-total-badge {
+  margin-top: 14px;
+  margin-bottom: 0;
 }
 
 .history-sub {

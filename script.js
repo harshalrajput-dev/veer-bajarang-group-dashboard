@@ -1,25 +1,67 @@
 /* ============================================
    VEER BAJARANG GROUP - Dashboard Logic
-   Unique IDs (VBG-001 .. VBG-059)
+   Unique IDs (VBG-001 .. VBG-060)
    100% Members (₹5,100) &     50% Members (₹2,100)
+
+   SINGLE SOURCE OF TRUTH RULE:
+   every rupee figure shown in the UI is derived
+   (reduce/sum) from the source arrays below.
+   No collection total is ever typed in by hand.
    ============================================ */
 
 const TARGET_FULL = 5100;
 const TARGET_HALF = 2100;
-const GUEST_CONTRIBUTIONS = 56100; // ₹5,100 (Jigneshbhai) + ₹51,000 (Samrat)
-const TOTAL_MEMBERSHIP_100 = 122100; // 100% membership collection
-const TOTAL_MEMBERSHIP_50 = 20001; // 50% membership collection
-const COLLECTION_2025 = 56000; // 2025 collection
 
+// ─── SOURCE DATA: RECEIPTS (रामेश्वर नगर पावती संग्रह) ───
 const receipts = [
-  { no: 1, area: "रामेश्वर नगर (गली नं. १, २)", amount: 8468 },
+  { no: 1, area: "रामेश्वर नगर (गली नं. १, २)", amount: 7468 },
   { no: 2, area: "रामेश्वर नगर (गली नं. १, २)", amount: 8620 },
   { no: 3, area: "रामेश्वर नगर (गली नं. १, २)", amount: 10426 },
 ];
 
-const RECEIPT_COLLECTION = receipts.reduce((s, r) => s + r.amount, 0); // रामेश्वर नगर पावती संग्रह एकूण (dynamic)
-const TOTAL_EXTRA = GUEST_CONTRIBUTIONS + RECEIPT_COLLECTION;
-const TOTAL_COLLECTION = TOTAL_MEMBERSHIP_100 + TOTAL_MEMBERSHIP_50 + GUEST_CONTRIBUTIONS + RECEIPT_COLLECTION + COLLECTION_2025;
+// ─── SOURCE DATA: GUESTS & SPONSORS (प्रमुख अतिथी व विशेष सहकार्य) ───
+const guests = [
+  {
+    name: "मा.श्री. जिग्नेशभाई पाटील",
+    role: "अध्यक्ष, युथफोर गुजरात",
+    badge: "विशेष सहकार्य",
+    badgeClass: "badge-gold",
+    amount: 5100,
+    photo: "jignesh-patil.png",
+  },
+  {
+    name: "मा.श्री. सम्राट अभिमन्यू पाटील",
+    role: "सामाजिक कार्यकर्ता, उद्योगपती, सुरत",
+    badge: "बॅनर सेवा प्रायोजक",
+    badgeClass: "badge-orange",
+    amount: 51000,
+    photo: "samrat-patil.png",
+  },
+  {
+    name: "श्रीमती सांगीताबाई पाटील",
+    role: "विशेष सहकार्य",
+    badge: "विशेष सहकार्य",
+    badgeClass: "badge-gold",
+    amount: 501,
+    photo: null,
+  },
+  {
+    name: "श्री अमितसिंग राजपूत",
+    role: "विशेष सहकार्य",
+    badge: "विशेष सहकार्य",
+    badgeClass: "badge-gold",
+    amount: 501,
+    photo: null,
+  },
+];
+
+// ─── SOURCE DATA: 2025 LEDGER (मागील वर्षाचा हिशोब) ───
+const history2025 = [
+  { id: 1, name: "ओम मराठे", target: 14000, paid: 14000, status: "paid" },
+  { id: 2, name: "कमलेश पाटिल", target: 14000, paid: 14000, status: "paid" },
+  { id: 3, name: "राणा राजपूत", target: 14000, paid: 14000, status: "paid" },
+  { id: 4, name: "सुनील कोळी", target: 14000, paid: 14000, status: "paid" },
+];
 
 const members = [
   // ─── 100% MEMBERS (target ₹5,100) ───
@@ -113,6 +155,63 @@ const enriched = members.map((m) => {
   else status = "pending";
   return { ...m, pending, status, target };
 });
+
+// ─── DERIVED TOTALS (plain calculator addition over the source arrays) ───
+const sumOf = (list, key) => list.reduce((s, item) => s + (item[key] || 0), 0);
+
+const RECEIPT_COLLECTION = sumOf(receipts, "amount"); // रामेश्वर नगर पावती संग्रह एकूण
+const GUEST_CONTRIBUTIONS = sumOf(guests, "amount"); // अतिथी व प्रायोजक सहकार्य एकूण
+const TOTAL_MEMBERSHIP_100 = sumOf(
+  members.filter((m) => m.membershipType === "100%"),
+  "paid"
+);
+const TOTAL_MEMBERSHIP_50 = sumOf(
+  members.filter((m) => m.membershipType === "50%"),
+  "paid"
+);
+const COLLECTION_2025 = sumOf(history2025, "paid");
+const TOTAL_EXTRA = GUEST_CONTRIBUTIONS + RECEIPT_COLLECTION;
+const TOTAL_COLLECTION =
+  TOTAL_MEMBERSHIP_100 +
+  TOTAL_MEMBERSHIP_50 +
+  GUEST_CONTRIBUTIONS +
+  RECEIPT_COLLECTION +
+  COLLECTION_2025;
+
+// ─── GUESTS & SPONSORS (प्रमुख अतिथी व विशेष सहकार्य) ───
+const AVATAR_FALLBACK =
+  "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2750%27 fill=%27%23241d54%27/%3E%3Ccircle cx=%2750%27 cy=%2740%27 r=%2717%27 fill=%27%23b8a9d4%27/%3E%3Crect x=%2722%27 y=%2764%27 width=%2756%27 height=%2726%27 rx=%2713%27 fill=%27%23b8a9d4%27/%3E%3C/svg%3E";
+
+function renderGuests() {
+  const grid = document.getElementById("guestsGrid");
+  if (!grid) return;
+  grid.innerHTML = "";
+
+  guests.forEach((g, i) => {
+    const card = document.createElement("div");
+    card.className = "guest-card";
+    card.style.animationDelay = `${i * 60}ms`;
+
+    const photo = g.photo
+      ? `<img src="${g.photo}" alt="${g.name}" onerror="this.onerror=null;this.src='${AVATAR_FALLBACK}';" />`
+      : `<img src="${AVATAR_FALLBACK}" alt="${g.name}" />`;
+
+    const role = g.role
+      ? `<span class="guest-role">${g.role}</span>`
+      : "";
+
+    card.innerHTML = `
+      <div class="guest-photo">${photo}</div>
+      <h3 class="guest-name">${g.name}</h3>
+      ${role}
+      <span class="guest-badge ${g.badgeClass}">${g.badge}: ${fmt(g.amount)}</span>
+    `;
+    grid.appendChild(card);
+  });
+
+  document.getElementById("guestsTotalBadge").textContent =
+    "एकूण सहकार्य: " + fmt(GUEST_CONTRIBUTIONS);
+}
 
 // ─── RECEIPT COLLECTION (रामेश्वर नगर) ───
 function renderReceipts() {
@@ -233,7 +332,7 @@ const expenses = [
 
 const TOTAL_EXPENSES_AGREED = expenses.reduce((s, e) => s + e.total, 0);
 const TOTAL_EXPENSES_PAID = expenses.reduce((s, e) => s + e.paid, 0);
-const TOTAL_EXPENSES_PENDING = TOTAL_EXPENSES_AGREED - TOTAL_EXPENSES_PAID; // स्वामी समर्थ ₹18k + Dj साउंड ₹7k + डायमंड डेकोरेट ₹8k
+const TOTAL_EXPENSES_PENDING = TOTAL_EXPENSES_AGREED - TOTAL_EXPENSES_PAID; // श्री स्वामी समर्थ ₹13,000 + Dj साउंड ₹7,000
 
 function getExpenseNetBalance() {
   return TOTAL_COLLECTION - TOTAL_EXPENSES_PAID;
@@ -488,6 +587,18 @@ const allData = enriched;
 renderSummary(allData);
 updateTable();
 
+// Initial guests & sponsors (amounts derived from the guests array)
+renderGuests();
+
+// Evaluate the budget deficit banner on load, not only on the expenses tab
+updateBudgetDeficitAlert();
+
+// Membership tab targets are derived from the single TARGET_* constants
+document.getElementById("navType100").textContent =
+  "100% Membership (" + fmt(TARGET_FULL) + ")";
+document.getElementById("navType50").textContent =
+  "50% Membership (" + fmt(TARGET_HALF) + ")";
+
 // Sync receipt badge & nav label from dynamic receipt total
 document.getElementById("receiptTotalBadge").textContent = "एकूण पावती जमा: " + fmt(RECEIPT_COLLECTION) + " ✅ पूर्ण";
 document.getElementById("receiptNavLabel").textContent = "पावती संग्रह (" + fmt(RECEIPT_COLLECTION) + ")";
@@ -535,14 +646,9 @@ searchInput.addEventListener("input", updateTable);
 
 /* ============================================
    2025 HISTORY & PENDING BALANCE
+   (history2025 array lives in the source data
+    block at the top of this file)
    ============================================ */
-const history2025 = [
-  { id: 1, name: "ओम मराठे", target: 14000, paid: 14000, status: "paid" },
-  { id: 2, name: "कमलेश पाटिल", target: 14000, paid: 14000, status: "paid" },
-  { id: 3, name: "राणा राजपूत", target: 14000, paid: 14000, status: "paid" },
-  { id: 4, name: "सुनील कोळी", target: 14000, paid: 14000, status: "paid" },
-];
-
 const historyEnriched = history2025.map((m) => {
   const status = m.paid >= m.target ? "paid" : m.paid > 0 ? "partial" : "pending";
   return { ...m, pending: m.target - m.paid, status };

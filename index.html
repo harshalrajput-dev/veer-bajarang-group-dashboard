@@ -63,44 +63,15 @@
     </div>
   </header>
 
-  <!-- GUESTS & SPONSORS SECTION -->
+  <!-- GUESTS & SPONSORS SECTION (cards rendered from the `guests` array in script.js) -->
   <section class="guests-section">
     <div class="guests-header">
       <h2 class="guests-title">🤝 प्रमुख अतिथी व विशेष सहकार्य (२०२६)</h2>
       <p class="guests-subtitle">वीर बजरंग ग्रुप उत्सव २०२६ चे सन्माननीय अतिथी व प्रायोजक</p>
+      <span class="guests-total-badge" id="guestsTotalBadge">…</span>
     </div>
 
-    <div class="guests-grid">
-
-      <!-- GUEST CARD 1 -->
-      <div class="guest-card">
-        <div class="guest-photo">
-          <img
-            src="jignesh-patil.png"
-            alt="मा.श्री. जिग्नेशभाई पाटील"
-            onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2750%27 fill=%27%23241d54%27/%3E%3Ccircle cx=%2750%27 cy=%2740%27 r=%2717%27 fill=%27%23b8a9d4%27/%3E%3Crect x=%2722%27 y=%2764%27 width=%2756%27 height=%2726%27 rx=%2713%27 fill=%27%23b8a9d4%27/%3E%3C/svg%3E';"
-          />
-        </div>
-        <h3 class="guest-name">मा.श्री. जिग्नेशभाई पाटील</h3>
-        <span class="guest-role">अध्यक्ष, युथफोर गुजरात</span>
-        <span class="guest-badge badge-gold">विशेष सहकार्य: ₹५,१००</span>
-      </div>
-
-      <!-- GUEST CARD 2 -->
-      <div class="guest-card">
-        <div class="guest-photo">
-          <img
-            src="samrat-patil.png"
-            alt="मा.श्री. सम्राट अभिमन्यू पाटील"
-            onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2750%27 fill=%27%23241d54%27/%3E%3Ccircle cx=%2750%27 cy=%2740%27 r=%2717%27 fill=%27%23b8a9d4%27/%3E%3Crect x=%2722%27 y=%2764%27 width=%2756%27 height=%2726%27 rx=%2713%27 fill=%27%23b8a9d4%27/%3E%3C/svg%3E';"
-          />
-        </div>
-        <h3 class="guest-name">मा.श्री. सम्राट अभिमन्यू पाटील</h3>
-        <span class="guest-role">सामाजिक कार्यकर्ता, उद्योगपती, सुरत</span>
-        <span class="guest-badge badge-orange">बॅनर सेवा प्रायोजक: ₹५१,०००</span>
-      </div>
-
-    </div>
+    <div class="guests-grid" id="guestsGrid"></div>
   </section>
 
   <!-- TAB NAVIGATION -->
@@ -115,9 +86,9 @@
   <!-- MEMBERSHIP TYPE SUB-TABS -->
   <div class="membership-nav" style="display: flex; gap: 10px; justify-content: center; margin: 20px 0;">
     <button class="membership-btn active" data-type="all">सर्व सदस्य (All)</button>
-    <button class="membership-btn" data-type="100">100% Membership (₹5,100)</button>
-    <button class="membership-btn" data-type="50">50% Membership (₹2,100)</button>
-    <button class="membership-btn" data-type="receipts" id="receiptNavLabel">पावती संग्रह (₹16,661)</button>
+    <button class="membership-btn" data-type="100" id="navType100">100% Membership</button>
+    <button class="membership-btn" data-type="50" id="navType50">50% Membership</button>
+    <button class="membership-btn" data-type="receipts" id="receiptNavLabel">पावती संग्रह</button>
     <button class="membership-btn" data-type="expenses">ખર્ચ હિશોબ (Expenses)</button>
   </div>
 
@@ -198,7 +169,7 @@
     <div class="history-card">
       <div class="history-header">
         <h2 class="history-title">🧾 पावती संग्रह - रामेश्वर नगर (गली नं. १, २)</h2>
-        <span class="history-goal-badge" id="receiptTotalBadge">एकूण पावती जमा: ₹16,661 ✅ पूर्ण</span>
+        <span class="history-goal-badge" id="receiptTotalBadge">एकूण पावती जमा: …</span>
         <p class="history-sub">उत्सव २०२६ पावती संग्रह (Receipt Collection) तपशील</p>
       </div>
       <div class="table-wrapper">
@@ -222,7 +193,7 @@
     <div class="history-card">
       <div class="history-header">
         <h2 class="history-title">💸 ખર્ચ હિશોબ - ઉત્સવ २०२६</h2>
-        <span class="history-goal-badge" id="expenseTotalBadge">एकूण तयार: ₹2,96,025 | भरलेले: ₹2,63,025 | बाकी: ₹33,000</span>
+        <span class="history-goal-badge" id="expenseTotalBadge">हिशोब लोड होत आहे…</span>
         <p class="history-sub">उत्सव २०२६ खर्च तपशील (Expenses Detail)</p>
       </div>
       <div class="table-wrapper">
@@ -251,7 +222,7 @@
 
       <div class="history-header">
         <h2 class="history-title">🚩 वीर बजरंग ग्रुप - बाकी रक्कम २०२५</h2>
-        <span class="history-goal-badge" id="pendingRupeesBadge">Pending Rupees ₹4,000</span>
+        <span class="history-goal-badge" id="pendingRupeesBadge">Pending Rupees …</span>
         <p class="history-sub">मागील वर्षाचा (२०२५) अचूक जमा व बाकी हिशोब</p>
       </div>
 
@@ -261,21 +232,21 @@
           <span class="h-stat-icon">🎯</span>
           <div class="h-stat-info">
             <span class="h-stat-label">एकूण उद्दिष्ट २०२५</span>
-            <span class="h-stat-value" id="hGoal">₹56,000</span>
+            <span class="h-stat-value" id="hGoal">₹…</span>
           </div>
         </div>
         <div class="h-stat collected-stat">
           <span class="h-stat-icon">✅</span>
           <div class="h-stat-info">
             <span class="h-stat-label">एकूण जमा २०२५</span>
-            <span class="h-stat-value" id="hCollected">₹52,000</span>
+            <span class="h-stat-value" id="hCollected">₹…</span>
           </div>
         </div>
         <div class="h-stat remaining-stat">
           <span class="h-stat-icon">⏳</span>
           <div class="h-stat-info">
             <span class="h-stat-label">एकूण बाकी २०२५</span>
-            <span class="h-stat-value" id="hRemaining">₹4,000</span>
+            <span class="h-stat-value" id="hRemaining">₹…</span>
           </div>
         </div>
       </div>
