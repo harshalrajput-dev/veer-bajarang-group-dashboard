@@ -93,13 +93,13 @@ const members = [
 
   // Fully Pending
   { id: "VBG-022", name: "सागर सोनवणे", paid: 2100, membershipType: "100%" },
-  { id: "VBG-023", name: "महेश दादू पाटिल", paid: 5000, membershipType: "100%" },
+  { id: "VBG-023", name: "महेश दादू पाटिल", paid: 0, membershipType: "100%" },
   { id: "VBG-024", name: "सागर मॉरीस", paid: 5100, membershipType: "100%" },
   { id: "VBG-025", name: "किसन राजपूत", paid: 0, membershipType: "100%" },
   { id: "VBG-026", name: "गौरव राजपूत", paid: 5100, membershipType: "100%" },
   { id: "VBG-027", name: "गुलाब पाटिल मास्टर", paid: 5100, membershipType: "100%" },
-  { id: "VBG-028", name: "संदीप पाटिल", paid: 2100, membershipType: "50%" },
-  { id: "VBG-029", name: "प्रवीण राजपूत", paid: 2100, membershipType: "50%" },
+  { id: "VBG-028", name: "संदीप पाटिल", paid: 2500, membershipType: "100%" },
+  { id: "VBG-029", name: "भूषण राजपूत", paid: 2100, membershipType: "50%" },
   { id: "VBG-030", name: "तुषार पाटिल दादा", paid: 5100, membershipType: "100%" },
   { id: "VBG-032", name: "अजय सोनवणे", paid: 1100, membershipType: "50%" },
   { id: "VBG-033", name: "जंबू पाटिल", paid: 0, membershipType: "100%" },
@@ -109,12 +109,12 @@ const members = [
   { id: "VBG-037", name: "कमलेश पाटिल", paid: 0, membershipType: "100%" },
   { id: "VBG-038", name: "गोपाल भाटु पाटिल", paid: 0, membershipType: "100%" },
   { id: "VBG-040", name: "भूषण बाविस्कर", paid: 5100, membershipType: "100%" },
+  { id: "VBG-060", name: "मनोज कोळी (रिक्षावाला)", paid: 2000, membershipType: "100%" },
 
   // ─── 50% MEMBERS (target ₹2,100) ───
 
   { id: "VBG-031", name: "भैय्याभाऊ पाटिल", paid: 2100, membershipType: "50%" },
   { id: "VBG-041", name: "उमेश बाबूल", paid: 2100, membershipType: "50%" },
-  { id: "VBG-042", name: "मनोज कोळी", paid: 2000, membershipType: "50%" },
   { id: "VBG-043", name: "तुशाल पाटिल bJP", paid: 0, membershipType: "50%" },
   { id: "VBG-044", name: "जितु पाटिल", paid: 0, membershipType: "50%" },
   { id: "VBG-045", name: "योगेश (56)", paid: 0, membershipType: "50%" },
@@ -132,7 +132,6 @@ const members = [
   { id: "VBG-057", name: "आकाश नानाभाऊ कोळी", paid: 2100, membershipType: "50%" },
   { id: "VBG-058", name: "रोहित रविन्द्र सोनवणे", paid: 1000, membershipType: "50%" },
   { id: "VBG-059", name: "विलास दत्तू पाटिल (सोनू)", paid: 2100, membershipType: "50%" },
-  { id: "VBG-060", name: "मनोज कोळी (रिक्षावाला)", paid: 2000, membershipType: "50%" },
   { id: "VBG-039", name: "गणेश बिरडे", paid: 1100, membershipType: "50%" }
   
   
@@ -281,6 +280,7 @@ const expenses = [
   { name: "पियोपी माती", total: 100, paid: 100 },
   { name: "सेंटिंग तार", total: 50, paid: 50 },
   { name: "रांगोळी", total: 80, paid: 80 },
+  { name: "फटाके बँड", total: 10080, paid: 10080 },
   { name: "किरकोळ", total: 100, paid: 100 },
   { name: "ट्रॅक्टर डिझेल", total: 1000, paid: 1000 },
   { name: "ट्रॅक्टर ड्रॉइव्हिंग", total: 1000, paid: 1000 },
@@ -310,9 +310,9 @@ const expenses = [
   { name: "पोलिस बॅनर", total: 1100, paid: 1100 },
   { name: "सत्यनारायण महाराज", total: 3100, paid: 3100 },
   { name: "मुलांचे गेम", total: 500, paid: 500 },
-  { name: "श्री स्वामी समर्थ (दादा लाईट डेकोरेट)", total: 13000, paid: 0 },
+  { name: "श्री स्वामी समर्थ (दादा लाईट डेकोरेट)", total: 18000, paid: 0 },
   { name: "Dj साउंड (लाला)", total: 7000, paid: 0 },
-  { name: "सत्यनारायण पूजा", total: 1450, paid: 1450 },
+  { name: "सत्यनारायण पूजा", total: 1250, paid: 1250 },
   { name: "सत्यनारायण भंडारा सामान", total: 4200, paid: 4200 },
   { name: "शाकभाजी भंडारा", total: 1550, paid: 1550 },
   { name: "टोपी अँड शॉल", total: 825, paid: 825 },
